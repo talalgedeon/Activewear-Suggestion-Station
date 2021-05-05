@@ -5,7 +5,6 @@
  * Date:
  */
 
-
 #include <Adafruit_DHT.h>
 
 #define DHTPIN A0
@@ -35,5 +34,6 @@ void loop() {
   }
 
   Serial.print('Humid: ', h);
+  Serial.print(h);
 
 }

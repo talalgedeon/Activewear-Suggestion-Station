@@ -11,12 +11,11 @@
  * Date:
  */
 
-
 #include <Adafruit_DHT.h>
 
 void setup();
 void loop();
-#line 11 "/Users/talalagedeon/Desktop/particlePDP/shortproject/src/shortproject.ino"
+#line 10 "/Users/talalagedeon/Desktop/particlePDP/shortproject/src/shortproject.ino"
 #define DHTPIN A0
 
 #define DHTTYPE DHT11
@@ -44,5 +43,6 @@ void loop() {
   }
 
   Serial.print('Humid: ', h);
+  Serial.print(h);
 
 }
