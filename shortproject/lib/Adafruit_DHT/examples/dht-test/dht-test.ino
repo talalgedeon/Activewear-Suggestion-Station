@@ -1,4 +1,4 @@
-#include "Adafruit_DHT.h"
+#include <Adafruit_DHT.h>
 
 // Example testing sketch for various DHT humidity/temperature sensors
 // Written by ladyada, public domain

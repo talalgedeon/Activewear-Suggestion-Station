@@ -31,7 +31,7 @@ void setup() {
 
 // loop() runs over and over again, as quickly as it can execute.
 void loop() {
-  delay(2000);
+  delay(10000);
 
   float h = dht.getHumidity();
   float t = dht.getTempCelcius();
@@ -42,7 +42,11 @@ void loop() {
     return;
   }
 
-  Serial.print('Humid: ', h);
-  Serial.print(h);
+  Serial.print("tempC");
+  Serial.print(t);
+
+  Particle.publish("tempC",String (t));
+  Particle.publish("tempF", String (f));
+  Particle.publish("humid", String (h));
 
 }
