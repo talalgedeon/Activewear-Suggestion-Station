@@ -1,3 +1,9 @@
+/******************************************************/
+//       THIS IS A GENERATED FILE - DO NOT EDIT       //
+/******************************************************/
+
+#include "Particle.h"
+#line 1 "/Users/talalagedeon/Desktop/particlePDP/shortproject/src/shortproject.ino"
 /*
  * Project pdp-shortproject
  * Description: Short Project Professional Development Plan
@@ -8,6 +14,9 @@
 
 #include <Adafruit_DHT.h>
 
+void setup();
+void loop();
+#line 11 "/Users/talalagedeon/Desktop/particlePDP/shortproject/src/shortproject.ino"
 #define DHTPIN A0
 
 #define DHTTYPE DHT11
