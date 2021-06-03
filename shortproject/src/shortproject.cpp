@@ -18,7 +18,9 @@
 #include <Grove_OLED_128x64.h>
 
 void setup();
+void myHandler(const char *event, const char *data);
 void loop();
+void updateDisplay (int temp, int humidity);
 #line 14 "/Users/talalagedeon/Desktop/particlePDP/shortproject/src/shortproject.ino"
 #define DHTPIN A0
 
@@ -27,6 +29,8 @@ void loop();
 DHT dht(DHTPIN, DHTTYPE);
 
 ChainableLED leds (RX, TX, 1);
+
+void updateDisplay(int temp, int humidity);
 
 
 void setup() {
@@ -50,22 +54,27 @@ void setup() {
   SeeedOled.setTextXY(4, 0);
   SeeedOled.putString("Station");
 
+  Particle.subscribe("hook-response/CurrentWeather", myHandler, MY_DEVICES);
+}
+
+void myHandler(const char *event, const char *data) {
+  // Handle the integration response
 }
 
 // loop() runs over and over again, as quickly as it can execute.
 void loop() {
   delay(50000);
 
-  float h = dht.getHumidity();
-  float t = dht.getTempCelcius();
+  String data = String(10);
+
+  float humidity = dht.getHumidity();
+  float temp = dht.getTempCelcius();
   float f = dht.getTempFarenheit();
 
-  if (isnan(h) || isnan(t) || isnan(f)){
+  if (isnan(humidity) || isnan(temp) || isnan(f)){
     Serial.println("Failed to read from DHT sensor");
     return;
   }
-
-
   if (f > 75.0){
 leds.setColorRGB(0,255,0,0);
   }
@@ -74,11 +83,29 @@ leds.setColorRGB(0,255,0,0);
     leds.setColorRGB(0,0,0,255);
   }
 
-  Serial.print("tempC");
-  Serial.print(t);
+  // Serial.print("tempC");
+  // Serial.print(temp);
 
-  Particle.publish("tempC",String (t));
+  updateDisplay(temp, humidity);
+
+  Particle.publish("tempC",String (temp));
   Particle.publish("tempF", String (f));
-  Particle.publish("humid", String (h));
+  Particle.publish("humid", String (humidity));
 
+  // Trigger the integration
+  Particle.publish("CurrentWeather", data, PRIVATE);
+}
+
+void updateDisplay (int temp, int humidity)
+{
+  SeeedOled.clearDisplay(), 
+  SeeedOled.setTextXY(1, 0);
+  SeeedOled.putString("Indoor Temp: ");
+  SeeedOled.putNumber(temp);
+  SeeedOled.putString("C");
+
+  SeeedOled.setTextXY(2, 0);
+  SeeedOled.putString("Indoor Humd: ");
+  SeeedOled.putNumber(humidity);
+  SeeedOled.putString("%");
 }
