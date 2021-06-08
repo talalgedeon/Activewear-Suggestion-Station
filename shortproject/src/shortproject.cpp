@@ -18,9 +18,9 @@
 #include <Grove_OLED_128x64.h>
 
 void setup();
-void setCurrentWeather(const char *event, const char *data);
 void loop();
-void updateDisplay (int temp, int humidity);
+void setCurrentWeather(const char *event, const char *data);
+void updateDisplay (int temp, int humidity, int tempOutdoor , int humidityOutdoor);
 #line 14 "/Users/talalagedeon/Desktop/particlePDP/shortproject/src/shortproject.ino"
 #define DHTPIN A0
 
@@ -31,6 +31,9 @@ DHT dht(DHTPIN, DHTTYPE);
 ChainableLED leds (RX, TX, 1);
 
 void updateDisplay(int temp, int humidity);
+
+float tempOutdoor = -100;
+float humidityOutdoor = -1; 
 
 
 void setup() {
@@ -57,39 +60,55 @@ void setup() {
   Particle.subscribe(System.deviceID() + "/GetWeatherForecast/", setCurrentWeather, MY_DEVICES);
 }
 
-void setCurrentWeather(const char *event, const char *data) {
-  // Handle the integration response
-    JSONValue outerObj = JSONValue::parseCopy(data);
-    JSONObjectIterator iter(outerObj);
-}
-
-// loop() runs over and over again, as quickly as it can execute.
 void loop() {
   delay(50000);
 
   float humidity = dht.getHumidity();
-  float temp = dht.getTempFarenheit(); 
+  float temp = dht.getTempFarenheit();
+  const unsigned long publishPeriod = 15 * 60 * 1000;
+  static unsigned long lastPublish = 10000 - publishPeriod;
+
+  if (millis() - lastPublish >= publishPeriod) {
+    lastPublish = millis();
+    Particle.publish("GetWeatherForecast", PRIVATE);
+  }
 
   if (isnan(humidity) || isnan(temp)){
     Serial.println("Failed to read from DHT sensor");
     return;
   }
-  if (temp > 75.0){
+
+  if (temp > tempOutdoor){
   leds.setColorRGB(0,255,0,0);
   }
 
-  if (temp < 75.0){
+  if (temp < tempOutdoor){
     leds.setColorRGB(0,0,0,255);
   }
 
-  updateDisplay(temp, humidity);
+  updateDisplay(temp, humidity, tempOutdoor, humidityOutdoor);
 
   Particle.publish("tempF",String (temp));
   Particle.publish("humid", String (humidity));
 
+
 }
 
-void updateDisplay (int temp, int humidity)
+void setCurrentWeather(const char *event, const char *data) {
+    Log.info("subscriptionHandler %s", data);
+    JSONValue outerObj = JSONValue::parseCopy(data);
+    JSONObjectIterator iter(outerObj);
+    while (iter.next()) {
+        if (iter.name() == "temp") {
+            tempOutdoor = iter.value().toDouble();
+        }
+        if (iter.name() == "humidity") {
+            humidityOutdoor = iter.value().toDouble();
+        }
+    }}
+
+
+void updateDisplay (int temp, int humidity, int tempOutdoor , int humidityOutdoor)
 {
   SeeedOled.clearDisplay(), 
   SeeedOled.setTextXY(1, 0);
@@ -102,9 +121,14 @@ void updateDisplay (int temp, int humidity)
   SeeedOled.putNumber(humidity);
   SeeedOled.putString("%");
 
-  // SeeedOled.setTextXY(3, 0);
-  // SeeedOled.putString("Outdoor temp: ");
-  // SeeedOled.putNumber(humidity);
-  // SeeedOled.putString("C");
+  SeeedOled.setTextXY(4, 0);
+  SeeedOled.putString("Otdoor Temp: ");
+  SeeedOled.putNumber(tempOutdoor);
+  SeeedOled.putString("F");
+
+  SeeedOled.setTextXY(5, 0);
+  SeeedOled.putString("Otdoor Humd: ");
+  SeeedOled.putNumber(humidityOutdoor);
+  SeeedOled.putString("%");
 
 }
