@@ -806,7 +806,7 @@ inline spark::JSONValue spark::JSONObjectIterator::value() const {
    d4500:	4604      	mov	r4, r0
    d4502:	a807      	add	r0, sp, #28
    d4504:	f7ff febc 	bl	d4280 <_ZNSt14__shared_countILN9__gnu_cxx12_Lock_policyE0EED1Ev>
-        if (iter.name() == "humidity") {
+        if (iter.name() == "hum") {
    d4508:	2c00      	cmp	r4, #0
    d450a:	d1af      	bne.n	d446c <_Z17setCurrentWeatherPKcS0_+0x44>
     return JSONValue(v_, d_);
@@ -2088,7 +2088,7 @@ void SeeedOLED::putChar(unsigned char C)
     }
 }
    d4d22:	bd70      	pop	{r4, r5, r6, pc}
-   d4d24:	000d955e 	.word	0x000d955e
+   d4d24:	000d9559 	.word	0x000d9559
 
 000d4d28 <_ZN9SeeedOLED12clearDisplayEv>:
 {
@@ -3394,7 +3394,7 @@ RecursiveMutex WiringBleLock::mutex_;
    d53c6:	bd10      	pop	{r4, pc}
    d53c8:	2003e628 	.word	0x2003e628
    d53cc:	2003e620 	.word	0x2003e620
-   d53d0:	000d9868 	.word	0x000d9868
+   d53d0:	000d9864 	.word	0x000d9864
 
 000d53d4 <_ZNSt15_Sp_counted_ptrIPN8particle6detail10FutureImplIbNS1_13FutureContextEEELN9__gnu_cxx12_Lock_policyE0EED1Ev>:
     class _Sp_counted_ptr final : public _Sp_counted_base<_Lp>
@@ -3650,7 +3650,7 @@ inline particle::Error::~Error() {
 	}
    d54fc:	4620      	mov	r0, r4
    d54fe:	bd38      	pop	{r3, r4, r5, pc}
-   d5500:	000d98a4 	.word	0x000d98a4
+   d5500:	000d98a0 	.word	0x000d98a0
 
 000d5504 <_ZNSt8functionIFvRKN8particle5ErrorEEEC1ERKS5_>:
     function<_Res(_ArgTypes...)>::
@@ -4387,7 +4387,7 @@ EthernetClass Ethernet;
 } // spark
    d597e:	4770      	bx	lr
    d5980:	2003e650 	.word	0x2003e650
-   d5984:	000d98c0 	.word	0x000d98c0
+   d5984:	000d98bc 	.word	0x000d98bc
 
 000d5988 <_ZN7TwoWireD1Ev>:
 private:
@@ -4511,7 +4511,7 @@ TwoWire::TwoWire(hal_i2c_interface_t i2c, const hal_i2c_config_t& conf)
 }
    d59fc:	4620      	mov	r0, r4
    d59fe:	bd10      	pop	{r4, pc}
-   d5a00:	000d98fc 	.word	0x000d98fc
+   d5a00:	000d98f8 	.word	0x000d98f8
 
 000d5a04 <_ZN7TwoWire5beginEv>:
 	hal_i2c_begin(_i2c, I2C_MODE_MASTER, 0x00, NULL);
@@ -4677,7 +4677,7 @@ IPAddress::IPAddress()
    d5aba:	4620      	mov	r0, r4
    d5abc:	bd10      	pop	{r4, pc}
    d5abe:	bf00      	nop
-   d5ac0:	000d9924 	.word	0x000d9924
+   d5ac0:	000d9920 	.word	0x000d9920
 
 000d5ac4 <_ZN9IPAddressC1ERK16_HAL_IPAddress_t>:
 IPAddress::IPAddress(const HAL_IPAddress& address)
@@ -4695,7 +4695,7 @@ IPAddress::IPAddress(const HAL_IPAddress& address)
    d5ae0:	701a      	strb	r2, [r3, #0]
 }
    d5ae2:	bd10      	pop	{r4, pc}
-   d5ae4:	000d9924 	.word	0x000d9924
+   d5ae4:	000d9920 	.word	0x000d9920
 
 000d5ae8 <_ZN9IPAddress8set_ipv4Ehhhh>:
 {
@@ -4728,7 +4728,7 @@ IPAddress::IPAddress(const uint8_t* addr)
 }
    d5b18:	b002      	add	sp, #8
    d5b1a:	bd10      	pop	{r4, pc}
-   d5b1c:	000d9924 	.word	0x000d9924
+   d5b1c:	000d9920 	.word	0x000d9920
 
 000d5b20 <_ZN12_GLOBAL__N_19skipTokenEPK9jsmntok_t>:
 
@@ -5115,7 +5115,7 @@ bool spark::JSONValue::tokenize(const char *json, size_t size, jsmntok_t **token
    d5d16:	4620      	mov	r0, r4
    d5d18:	e7f7      	b.n	d5d0a <_ZN5spark9JSONValue8tokenizeEPKcjPP9jsmntok_tPj+0x62>
    d5d1a:	bf00      	nop
-   d5d1c:	000d9a08 	.word	0x000d9a08
+   d5d1c:	000d9a04 	.word	0x000d9a04
 
 000d5d20 <_ZN5spark9JSONValue8unescapeEP9jsmntok_tPc>:
         ++t;
@@ -5517,7 +5517,7 @@ bool spark::JSONObjectIterator::next() {
 	}
    d5f28:	4620      	mov	r0, r4
    d5f2a:	bd38      	pop	{r3, r4, r5, pc}
-   d5f2c:	000d9938 	.word	0x000d9938
+   d5f2c:	000d9934 	.word	0x000d9934
 
 000d5f30 <_ZN5spark9JSONValue9parseCopyEPKcj>:
 spark::JSONValue spark::JSONValue::parseCopy(const char *json, size_t size) {
@@ -5624,7 +5624,7 @@ spark::JSONValue spark::JSONValue::parseCopy(const char *json, size_t size) {
    d5fd0:	f7fe f956 	bl	d4280 <_ZNSt14__shared_countILN9__gnu_cxx12_Lock_policyE0EED1Ev>
    d5fd4:	e7c4      	b.n	d5f60 <_ZN5spark9JSONValue9parseCopyEPKcj+0x30>
    d5fd6:	bf00      	nop
-   d5fd8:	000d9a08 	.word	0x000d9a08
+   d5fd8:	000d9a04 	.word	0x000d9a04
 
 000d5fdc <_GLOBAL__sub_I__ZN5spark3LogE>:
     // This handler doesn't support direct logging
@@ -5644,7 +5644,7 @@ void spark::logProcessControlRequest(ctrl_request* req) {
 }
    d5fe2:	4770      	bx	lr
    d5fe4:	2003e658 	.word	0x2003e658
-   d5fe8:	000d994c 	.word	0x000d994c
+   d5fe8:	000d9948 	.word	0x000d9948
 
 000d5fec <_ZN5spark12NetworkClass7connectEj>:
         return Network;
@@ -5944,7 +5944,7 @@ class IPAddress : public Printable {
 } // spark
    d614e:	4770      	bx	lr
    d6150:	2003e65c 	.word	0x2003e65c
-   d6154:	000d9958 	.word	0x000d9958
+   d6154:	000d9954 	.word	0x000d9954
 
 000d6158 <_ZN5Print5writeEPKhj>:
 
@@ -6851,7 +6851,7 @@ USARTSerial::USARTSerial(hal_usart_interface_t serial, hal_usart_ring_buffer_t *
 }
    d6598:	4620      	mov	r0, r4
    d659a:	bd10      	pop	{r4, pc}
-   d659c:	000d99b0 	.word	0x000d99b0
+   d659c:	000d99ac 	.word	0x000d99ac
 
 000d65a0 <_Z22__fetch_global_Serial1v>:
 static hal_usart_ring_buffer_t* serial1_rx_buffer = nullptr;
@@ -7022,7 +7022,7 @@ USBSerial::USBSerial(HAL_USB_USART_Serial serial, const HAL_USB_USART_Config& co
 }
    d6690:	4620      	mov	r0, r4
    d6692:	bd10      	pop	{r4, pc}
-   d6694:	000d99e0 	.word	0x000d99e0
+   d6694:	000d99dc 	.word	0x000d99dc
 
 000d6698 <_ZN9USBSerial5beginEl>:
     HAL_USB_USART_Begin(_serial, speed, NULL);
@@ -7586,7 +7586,7 @@ hal_i2c_config_t __attribute__((weak)) acquireWireBuffer()
    d6996:	4620      	mov	r0, r4
    d6998:	bd38      	pop	{r3, r4, r5, pc}
    d699a:	bf00      	nop
-   d699c:	000d9a08 	.word	0x000d9a08
+   d699c:	000d9a04 	.word	0x000d9a04
 
 000d69a0 <_Z19__fetch_global_Wirev>:
 	return defaultWireConfig();
@@ -9261,7 +9261,7 @@ TwoWire& __fetch_global_Wire()
    d7b3a:	f04f 0c01 	mov.w	ip, #1
    d7b3e:	e7f6      	b.n	d7b2e <_strtod_l+0x28e>
    d7b40:	000d9b6c 	.word	0x000d9b6c
-   d7b44:	000d9a18 	.word	0x000d9a18
+   d7b44:	000d9a14 	.word	0x000d9a14
    d7b48:	7ff00000 	.word	0x7ff00000
    d7b4c:	9b1d      	ldr	r3, [sp, #116]	; 0x74
    d7b4e:	1c59      	adds	r1, r3, #1
@@ -9546,10 +9546,10 @@ TwoWire& __fetch_global_Wire()
    d7e28:	f04f 0b00 	mov.w	fp, #0
    d7e2c:	6023      	str	r3, [r4, #0]
    d7e2e:	e789      	b.n	d7d44 <_strtod_l+0x4a4>
-   d7e30:	000d9a12 	.word	0x000d9a12
-   d7e34:	000d9a2c 	.word	0x000d9a2c
-   d7e38:	000d9a09 	.word	0x000d9a09
-   d7e3c:	000d9a0c 	.word	0x000d9a0c
+   d7e30:	000d9a0e 	.word	0x000d9a0e
+   d7e34:	000d9a28 	.word	0x000d9a28
+   d7e38:	000d9a05 	.word	0x000d9a05
+   d7e3c:	000d9a08 	.word	0x000d9a08
    d7e40:	000d94dc 	.word	0x000d94dc
    d7e44:	000d9ba8 	.word	0x000d9ba8
    d7e48:	000d9b80 	.word	0x000d9b80
@@ -11787,122 +11787,122 @@ TwoWire& __fetch_global_Wire()
    d9524:	2054 6573 736e 726f 7400 6d65 4670 6800     T sensor.tempF.h
    d9534:	6d75 6469 7300 6275 6373 6972 7470 6f69     umid.subscriptio
    d9544:	486e 6e61 6c64 7265 2520 0073 6574 706d     nHandler %s.temp
-   d9554:	6800 6d75 6469 7469 0079                    .humidity.
+   d9554:	6800 6d75                                    .hum.
 
-000d955e <_ZL9BasicFont>:
+000d9559 <_ZL9BasicFont>:
 	...
-   d9566:	0000 005f 0000 0000 0000 0007 0007 0000     .._.............
-   d9576:	1400 147f 147f 0000 2400 7f2a 122a 0000     .........$*.*...
-   d9586:	2300 0813 6264 0000 3600 5549 5022 0000     .#..db...6IU"P..
-   d9596:	0000 0305 0000 0000 1c00 4122 0000 0000     .........."A....
-   d95a6:	4100 1c22 0000 0000 0800 1c2a 082a 0000     .A".......*.*...
-   d95b6:	0800 3e08 0808 0000 a000 0060 0000 0000     ...>......`.....
-   d95c6:	0800 0808 0808 0000 6000 0060 0000 0000     .........``.....
-   d95d6:	2000 0810 0204 0000 3e00 4951 3e45 0000     . .......>QIE>..
-   d95e6:	0000 7f42 0040 0000 6200 4951 4649 0000     ..B.@....bQIIF..
-   d95f6:	2200 4941 3649 0000 1800 1214 107f 0000     ."AII6..........
-   d9606:	2700 4545 3945 0000 3c00 494a 3049 0000     .'EEE9...<JII0..
-   d9616:	0100 0971 0305 0000 3600 4949 3649 0000     ..q......6III6..
-   d9626:	0600 4949 1e29 0000 0000 3636 0000 0000     ..II).....66....
-   d9636:	0000 6cac 0000 0000 0800 2214 0041 0000     ...l......."A...
-   d9646:	1400 1414 1414 0000 4100 1422 0008 0000     .........A".....
-   d9656:	0200 5101 0609 0000 3200 7949 3e41 0000     ...Q.....2IyA>..
-   d9666:	7e00 0909 7e09 0000 7f00 4949 3649 0000     .~...~....III6..
-   d9676:	3e00 4141 2241 0000 7f00 4141 1c22 0000     .>AAA"....AA"...
-   d9686:	7f00 4949 4149 0000 7f00 0909 0109 0000     ..IIIA..........
-   d9696:	3e00 4141 7251 0000 7f00 0808 7f08 0000     .>AAQr..........
-   d96a6:	4100 417f 0000 0000 2000 4140 013f 0000     .A.A..... @A?...
-   d96b6:	7f00 1408 4122 0000 7f00 4040 4040 0000     ...."A....@@@@..
-   d96c6:	7f00 0c02 7f02 0000 7f00 0804 7f10 0000     ................
-   d96d6:	3e00 4141 3e41 0000 7f00 0909 0609 0000     .>AAA>..........
-   d96e6:	3e00 5141 5e21 0000 7f00 1909 4629 0000     .>AQ!^......)F..
-   d96f6:	2600 4949 3249 0000 0100 7f01 0101 0000     .&III2..........
-   d9706:	3f00 4040 3f40 0000 1f00 4020 1f20 0000     .?@@@?.... @ ...
-   d9716:	3f00 3840 3f40 0000 6300 0814 6314 0000     .?@8@?...c...c..
-   d9726:	0300 7804 0304 0000 6100 4951 4345 0000     ...x.....aQIEC..
-   d9736:	7f00 4141 0000 0000 0200 0804 2010 0000     ..AA......... ..
-   d9746:	4100 7f41 0000 0000 0400 0102 0402 0000     .AA.............
-   d9756:	8000 8080 8080 0000 0100 0402 0000 0000     ................
-   d9766:	2000 5454 7854 0000 7f00 4448 3844 0000     . TTTx....HDD8..
-   d9776:	3800 4444 0028 0000 3800 4444 7f48 0000     .8DD(....8DDH...
-   d9786:	3800 5454 1854 0000 0800 097e 0002 0000     .8TTT.....~.....
-   d9796:	1800 a4a4 7ca4 0000 7f00 0408 7804 0000     .....|.......x..
-   d97a6:	0000 007d 0000 0000 8000 7d84 0000 0000     ..}........}....
-   d97b6:	7f00 2810 0044 0000 4100 407f 0000 0000     ...(D....A.@....
-   d97c6:	7c00 1804 7804 0000 7c00 0408 007c 0000     .|...x...|..|...
-   d97d6:	3800 4444 0038 0000 fc00 2424 0018 0000     .8DD8.....$$....
-   d97e6:	1800 2424 00fc 0000 0000 087c 0004 0000     ..$$......|.....
-   d97f6:	4800 5454 0024 0000 0400 447f 0000 0000     .HTT$......D....
-   d9806:	3c00 4040 007c 0000 1c00 4020 1c20 0000     .<@@|..... @ ...
-   d9816:	3c00 3040 3c40 0000 4400 1028 4428 0000     .<@0@<...D(.(D..
-   d9826:	1c00 a0a0 007c 0000 4400 5464 444c 0000     ....|....DdTLD..
-   d9836:	0800 4136 0000 0000 0000 007f 0000 0000     ..6A............
-   d9846:	4100 0836 0000 0000 0200 0101 0102 0000     .A6.............
-   d9856:	0200 0505 0002 0000 0000                    ..........
+   d9561:	0000 005f 0000 0000 0000 0007 0007 0000     .._.............
+   d9571:	1400 147f 147f 0000 2400 7f2a 122a 0000     .........$*.*...
+   d9581:	2300 0813 6264 0000 3600 5549 5022 0000     .#..db...6IU"P..
+   d9591:	0000 0305 0000 0000 1c00 4122 0000 0000     .........."A....
+   d95a1:	4100 1c22 0000 0000 0800 1c2a 082a 0000     .A".......*.*...
+   d95b1:	0800 3e08 0808 0000 a000 0060 0000 0000     ...>......`.....
+   d95c1:	0800 0808 0808 0000 6000 0060 0000 0000     .........``.....
+   d95d1:	2000 0810 0204 0000 3e00 4951 3e45 0000     . .......>QIE>..
+   d95e1:	0000 7f42 0040 0000 6200 4951 4649 0000     ..B.@....bQIIF..
+   d95f1:	2200 4941 3649 0000 1800 1214 107f 0000     ."AII6..........
+   d9601:	2700 4545 3945 0000 3c00 494a 3049 0000     .'EEE9...<JII0..
+   d9611:	0100 0971 0305 0000 3600 4949 3649 0000     ..q......6III6..
+   d9621:	0600 4949 1e29 0000 0000 3636 0000 0000     ..II).....66....
+   d9631:	0000 6cac 0000 0000 0800 2214 0041 0000     ...l......."A...
+   d9641:	1400 1414 1414 0000 4100 1422 0008 0000     .........A".....
+   d9651:	0200 5101 0609 0000 3200 7949 3e41 0000     ...Q.....2IyA>..
+   d9661:	7e00 0909 7e09 0000 7f00 4949 3649 0000     .~...~....III6..
+   d9671:	3e00 4141 2241 0000 7f00 4141 1c22 0000     .>AAA"....AA"...
+   d9681:	7f00 4949 4149 0000 7f00 0909 0109 0000     ..IIIA..........
+   d9691:	3e00 4141 7251 0000 7f00 0808 7f08 0000     .>AAQr..........
+   d96a1:	4100 417f 0000 0000 2000 4140 013f 0000     .A.A..... @A?...
+   d96b1:	7f00 1408 4122 0000 7f00 4040 4040 0000     ...."A....@@@@..
+   d96c1:	7f00 0c02 7f02 0000 7f00 0804 7f10 0000     ................
+   d96d1:	3e00 4141 3e41 0000 7f00 0909 0609 0000     .>AAA>..........
+   d96e1:	3e00 5141 5e21 0000 7f00 1909 4629 0000     .>AQ!^......)F..
+   d96f1:	2600 4949 3249 0000 0100 7f01 0101 0000     .&III2..........
+   d9701:	3f00 4040 3f40 0000 1f00 4020 1f20 0000     .?@@@?.... @ ...
+   d9711:	3f00 3840 3f40 0000 6300 0814 6314 0000     .?@8@?...c...c..
+   d9721:	0300 7804 0304 0000 6100 4951 4345 0000     ...x.....aQIEC..
+   d9731:	7f00 4141 0000 0000 0200 0804 2010 0000     ..AA......... ..
+   d9741:	4100 7f41 0000 0000 0400 0102 0402 0000     .AA.............
+   d9751:	8000 8080 8080 0000 0100 0402 0000 0000     ................
+   d9761:	2000 5454 7854 0000 7f00 4448 3844 0000     . TTTx....HDD8..
+   d9771:	3800 4444 0028 0000 3800 4444 7f48 0000     .8DD(....8DDH...
+   d9781:	3800 5454 1854 0000 0800 097e 0002 0000     .8TTT.....~.....
+   d9791:	1800 a4a4 7ca4 0000 7f00 0408 7804 0000     .....|.......x..
+   d97a1:	0000 007d 0000 0000 8000 7d84 0000 0000     ..}........}....
+   d97b1:	7f00 2810 0044 0000 4100 407f 0000 0000     ...(D....A.@....
+   d97c1:	7c00 1804 7804 0000 7c00 0408 007c 0000     .|...x...|..|...
+   d97d1:	3800 4444 0038 0000 fc00 2424 0018 0000     .8DD8.....$$....
+   d97e1:	1800 2424 00fc 0000 0000 087c 0004 0000     ..$$......|.....
+   d97f1:	4800 5454 0024 0000 0400 447f 0000 0000     .HTT$......D....
+   d9801:	3c00 4040 007c 0000 1c00 4020 1c20 0000     .<@@|..... @ ...
+   d9811:	3c00 3040 3c40 0000 4400 1028 4428 0000     .<@0@<...D(.(D..
+   d9821:	1c00 a0a0 007c 0000 4400 5464 444c 0000     ....|....DdTLD..
+   d9831:	0800 4136 0000 0000 0000 007f 0000 0000     ..6A............
+   d9841:	4100 0836 0000 0000 0200 0101 0102 0000     .A6.............
+   d9851:	0200 0505 0002 0000 0000                     ...........
 
-000d9860 <_ZTVN5spark13CellularClassE>:
+000d985c <_ZTVN5spark13CellularClassE>:
 	...
-   d9868:	539b 000d 5391 000d 5387 000d 533d 000d     .S...S...S..=S..
-   d9878:	537b 000d 536f 000d 602d 000d 6035 000d     {S..oS..-`..5`..
-   d9888:	5363 000d 535b 000d 5351 000d 5347 000d     cS..[S..QS..GS..
-   d9898:	6065 000d                                   e`..
+   d9864:	539b 000d 5391 000d 5387 000d 533d 000d     .S...S...S..=S..
+   d9874:	537b 000d 536f 000d 602d 000d 6035 000d     {S..oS..-`..5`..
+   d9884:	5363 000d 535b 000d 5351 000d 5347 000d     cS..[S..QS..GS..
+   d9894:	6065 000d                                   e`..
 
-000d989c <_ZTVSt15_Sp_counted_ptrIPN8particle6detail10FutureImplIbNS1_13FutureContextEEELN9__gnu_cxx12_Lock_policyE0EE>:
+000d9898 <_ZTVSt15_Sp_counted_ptrIPN8particle6detail10FutureImplIbNS1_13FutureContextEEELN9__gnu_cxx12_Lock_policyE0EE>:
 	...
-   d98a4:	53d5 000d 53db 000d 5419 000d 53e9 000d     .S...S...T...S..
-   d98b4:	53d7 000d                                   .S..
+   d98a0:	53d5 000d 53db 000d 5419 000d 53e9 000d     .S...S...T...S..
+   d98b0:	53d7 000d                                   .S..
 
-000d98b8 <_ZTVN5spark13EthernetClassE>:
+000d98b4 <_ZTVN5spark13EthernetClassE>:
 	...
-   d98c0:	596b 000d 5961 000d 5957 000d 594d 000d     kY..aY..WY..MY..
-   d98d0:	5941 000d 5935 000d 602d 000d 6035 000d     AY..5Y..-`..5`..
-   d98e0:	5929 000d 5921 000d 5917 000d 590d 000d     )Y..!Y...Y...Y..
-   d98f0:	6065 000d                                   e`..
+   d98bc:	596b 000d 5961 000d 5957 000d 594d 000d     kY..aY..WY..MY..
+   d98cc:	5941 000d 5935 000d 602d 000d 6035 000d     AY..5Y..-`..5`..
+   d98dc:	5929 000d 5921 000d 5917 000d 590d 000d     )Y..!Y...Y...Y..
+   d98ec:	6065 000d                                   e`..
 
-000d98f4 <_ZTV7TwoWire>:
+000d98f0 <_ZTV7TwoWire>:
 	...
-   d98fc:	5989 000d 59d3 000d 59ab 000d 598b 000d     .Y...Y...Y...Y..
-   d990c:	59b3 000d 59bb 000d 59c3 000d 59cb 000d     .Y...Y...Y...Y..
+   d98f8:	5989 000d 59d3 000d 59ab 000d 598b 000d     .Y...Y...Y...Y..
+   d9908:	59b3 000d 59bb 000d 59c3 000d 59cb 000d     .Y...Y...Y...Y..
 
-000d991c <_ZTV9IPAddress>:
+000d9918 <_ZTV9IPAddress>:
 	...
-   d9924:	5a45 000d 5a35 000d 5a37 000d               EZ..5Z..7Z..
+   d9920:	5a45 000d 5a35 000d 5a37 000d               EZ..5Z..7Z..
 
-000d9930 <_ZTVSt15_Sp_counted_ptrIPN5spark6detail8JSONDataELN9__gnu_cxx12_Lock_policyE0EE>:
+000d992c <_ZTVSt15_Sp_counted_ptrIPN5spark6detail8JSONDataELN9__gnu_cxx12_Lock_policyE0EE>:
 	...
-   d9938:	5b4f 000d 5b55 000d 5b6b 000d 5b63 000d     O[..U[..k[..c[..
-   d9948:	5b51 000d 7061 0070                         Q[..app.
+   d9934:	5b4f 000d 5b55 000d 5b6b 000d 5b63 000d     O[..U[..k[..c[..
+   d9944:	5b51 000d 7061 0070                         Q[..app.
 
-000d9950 <_ZTVN5spark12NetworkClassE>:
+000d994c <_ZTVN5spark12NetworkClassE>:
 	...
-   d9958:	5fed 000d 5ff7 000d 6001 000d 600b 000d     ._..._...`...`..
-   d9968:	6015 000d 6021 000d 602d 000d 6035 000d     .`..!`..-`..5`..
-   d9978:	603d 000d 6049 000d 6051 000d 605b 000d     =`..I`..Q`..[`..
-   d9988:	6065 000d 5925 252d 2d6d 6425 2554 3a48     e`..%Y-%m-%dT%H:
-   d9998:	4d25 253a 2553 007a 7361 7463 6d69 0065     %M:%S%z.asctime.
+   d9954:	5fed 000d 5ff7 000d 6001 000d 600b 000d     ._..._...`...`..
+   d9964:	6015 000d 6021 000d 602d 000d 6035 000d     .`..!`..-`..5`..
+   d9974:	603d 000d 6049 000d 6051 000d 605b 000d     =`..I`..Q`..[`..
+   d9984:	6065 000d 5925 252d 2d6d 6425 2554 3a48     e`..%Y-%m-%dT%H:
+   d9994:	4d25 253a 2553 007a 7361 7463 6d69 0065     %M:%S%z.asctime.
 
-000d99a8 <_ZTV11USARTSerial>:
+000d99a4 <_ZTV11USARTSerial>:
 	...
-   d99b0:	64f9 000d 6565 000d 653d 000d 6159 000d     .d..ee..=e..Ya..
-   d99c0:	650d 000d 6529 000d 651b 000d 6537 000d     .e..)e...e..7e..
-   d99d0:	64fb 000d 64ff 000d                         .d...d..
+   d99ac:	64f9 000d 6565 000d 653d 000d 6159 000d     .d..ee..=e..Ya..
+   d99bc:	650d 000d 6529 000d 651b 000d 6537 000d     .e..)e...e..7e..
+   d99cc:	64fb 000d 64ff 000d                         .d...d..
 
-000d99d8 <_ZTV9USBSerial>:
+000d99d4 <_ZTV9USBSerial>:
 	...
-   d99e0:	65f9 000d 6661 000d 6637 000d 6159 000d     .e..af..7f..Ya..
-   d99f0:	6629 000d 65fb 000d 660b 000d 665b 000d     )f...e...f..[f..
-   d9a00:	661b 000d 65f5 000d                         .f...e..
+   d99dc:	65f9 000d 6661 000d 6637 000d 6159 000d     .e..af..7f..Ya..
+   d99ec:	6629 000d 65fb 000d 660b 000d 665b 000d     )f...e...f..[f..
+   d99fc:	661b 000d 65f5 000d                         .f...e..
 
-000d9a08 <_ZSt7nothrow>:
-   d9a08:	6e00 0066 6e69 7469 0079 6e61 0000 0000     .nf.inity.an....
+000d9a04 <_ZSt7nothrow>:
+   d9a04:	6e00 0066 6e69 7469 0079 6e61 0000 0000     .nf.inity.an....
 
-000d9a18 <fpi.7566>:
-   d9a18:	0035 0000 fbce ffff 03cb 0000 0001 0000     5...............
-   d9a28:	0000 0000                                   ....
+000d9a14 <fpi.7566>:
+   d9a14:	0035 0000 fbce ffff 03cb 0000 0001 0000     5...............
+   d9a24:	0000 0000                                   ....
 
-000d9a2c <fpinan.7602>:
-   d9a2c:	0034 0000 fbce ffff 03cb 0000 0001 0000     4...............
-   d9a3c:	0000 0000                                   ....
+000d9a28 <fpinan.7602>:
+   d9a28:	0034 0000 fbce ffff 03cb 0000 0001 0000     4...............
+	...
 
 000d9a40 <tinytens>:
    d9a40:	89bc 97d8 d2b2 3c9c a733 d5a8 f623 3949     .......<3...#.I9

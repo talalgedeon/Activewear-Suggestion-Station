@@ -91,7 +91,7 @@ void setCurrentWeather(const char *event, const char *data) {
         if (iter.name() == "temp") {
             tempOutdoor = iter.value().toDouble();
         }
-        if (iter.name() == "humidity") {
+        if (iter.name() == "hum") {
             humidityOutdoor = iter.value().toDouble();
         }
     }}
