@@ -43,46 +43,39 @@ void setup() {
   SeeedOled.setTextXY(4, 0);
   SeeedOled.putString("Station");
 
-  Particle.subscribe("hook-response/CurrentWeather", myHandler, MY_DEVICES);
+  Particle.subscribe(System.deviceID() + "/GetWeatherForecast/", setCurrentWeather, MY_DEVICES);
 }
 
-void myHandler(const char *event, const char *data) {
+void setCurrentWeather(const char *event, const char *data) {
   // Handle the integration response
+    JSONValue outerObj = JSONValue::parseCopy(data);
+    JSONObjectIterator iter(outerObj);
 }
 
 // loop() runs over and over again, as quickly as it can execute.
 void loop() {
   delay(50000);
 
-  String data = String(10);
-
   float humidity = dht.getHumidity();
-  float temp = dht.getTempCelcius();
-  float f = dht.getTempFarenheit();
+  float temp = dht.getTempFarenheit(); 
 
-  if (isnan(humidity) || isnan(temp) || isnan(f)){
+  if (isnan(humidity) || isnan(temp)){
     Serial.println("Failed to read from DHT sensor");
     return;
   }
-  if (f > 75.0){
-leds.setColorRGB(0,255,0,0);
+  if (temp > 75.0){
+  leds.setColorRGB(0,255,0,0);
   }
 
-  if (f < 75.0){
+  if (temp < 75.0){
     leds.setColorRGB(0,0,0,255);
   }
 
-  // Serial.print("tempC");
-  // Serial.print(temp);
-
   updateDisplay(temp, humidity);
 
-  Particle.publish("tempC",String (temp));
-  Particle.publish("tempF", String (f));
+  Particle.publish("tempF",String (temp));
   Particle.publish("humid", String (humidity));
 
-  // Trigger the integration
-  Particle.publish("CurrentWeather", data, PRIVATE);
 }
 
 void updateDisplay (int temp, int humidity)
@@ -91,10 +84,16 @@ void updateDisplay (int temp, int humidity)
   SeeedOled.setTextXY(1, 0);
   SeeedOled.putString("Indoor Temp: ");
   SeeedOled.putNumber(temp);
-  SeeedOled.putString("C");
+  SeeedOled.putString("F");
 
   SeeedOled.setTextXY(2, 0);
   SeeedOled.putString("Indoor Humd: ");
   SeeedOled.putNumber(humidity);
   SeeedOled.putString("%");
+
+  // SeeedOled.setTextXY(3, 0);
+  // SeeedOled.putString("Outdoor temp: ");
+  // SeeedOled.putNumber(humidity);
+  // SeeedOled.putString("C");
+
 }
