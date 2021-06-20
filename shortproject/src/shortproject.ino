@@ -20,7 +20,8 @@ DHT dht(DHTPIN, DHTTYPE);
 ChainableLED leds (RX, TX, 1);
 
 void updateDisplay(int temp, int humidity);
-double calcHeatIndex (float temp, float humidity);
+double indoorHeatIndex (float temp, float humidity);
+double outdoorHeatIndex (float temp, float humidity);
 
 float tempOutdoor = -100;
 float humidityOutdoor = -1; 
@@ -80,8 +81,8 @@ void loop() {
 
   Particle.publish("TempF",String (temp));
   Particle.publish("Humid", String (humidity));
-  Particle.publish("Heat Index",String(calcHeatIndex(temp, humidity)));
-
+  Particle.publish("Indoor Heat Index",String(indoorHeatIndex(temp, humidity)));
+  Particle.publish("Outdoor Heat Index",String(outdoorHeatIndex(tempOutdoor, humidityOutdoor)));
 
 }
 
@@ -124,7 +125,7 @@ void updateDisplay (int temp, int humidity, int tempOutdoor , int humidityOutdoo
 
 }
 
-double calcHeatIndex (float temp, float humidity) {
+double indoorHeatIndex (float temp, float humidity) {
     const double c1 = -42.379;
     const double c2 = 2.04901523;
     const double c3 = 10.14333127;
@@ -145,4 +146,27 @@ double calcHeatIndex (float temp, float humidity) {
                            (c9 * (temp * temp) * (humidity * humidity));
 
   return heatIndex;
+}   
+
+double outdoorHeatIndex (float tempOutdoor, float humidityOutdoor) {
+    const double c1 = -42.379;
+    const double c2 = 2.04901523;
+    const double c3 = 10.14333127;
+    const double c4 = -.22475541;
+    const double c5 = -0.00683783;
+    const double c6 = -0.05481717;
+    const double c7 = 0.00122874;
+    const double c8 = 0.00085282;
+    const double c9 = -0.00000199;
+
+    double outHeatIndex = c1 + (c2 * tempOutdoor) +
+                           (c3 * humidityOutdoor) +
+                           (c4 * tempOutdoor*humidityOutdoor) + 
+                           (c5 * (tempOutdoor*tempOutdoor)) +
+                           (c6 * (humidityOutdoor * humidityOutdoor)) +
+                           (c7 * (tempOutdoor * tempOutdoor) * humidityOutdoor) + 
+                           (c8 * tempOutdoor * (humidityOutdoor * humidityOutdoor)) +
+                           (c9 * (tempOutdoor * tempOutdoor) * (humidityOutdoor * humidityOutdoor));
+
+  return outHeatIndex;
 }   
