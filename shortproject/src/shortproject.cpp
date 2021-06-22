@@ -17,15 +17,21 @@
 
 #include <Grove_OLED_128x64.h>
 
+#include <Ubidots.h>
+
 void setup();
 void loop();
 void setCurrentWeather(const char *event, const char *data);
 void updateDisplay (int temp, int humidity, int tempOutdoor , int humidityOutdoor);
 double outdoorHeatIndex (float tempOutdoor, float humidityOutdoor);
-#line 14 "/Users/talalagedeon/Desktop/particlePDP/shortproject/src/shortproject.ino"
+#line 16 "/Users/talalagedeon/Desktop/particlePDP/shortproject/src/shortproject.ino"
 #define DHTPIN A0
 
 #define DHTTYPE DHT11
+
+const char *WEBHOOK_NAME = "Ubidots";
+
+Ubidots ubidots("webhook", UBI_PARTICLE);
 
 DHT dht(DHTPIN, DHTTYPE);
 
@@ -90,6 +96,16 @@ void loop() {
   }
 
   updateDisplay(temp, humidity, tempOutdoor, humidityOutdoor);
+
+  ubidots.add("Indoor Temp", temp);
+  ubidots.add("Indoor Humidity", humidity);
+  ubidots.add("Outdoor Temp", tempOutdoor);
+  ubidots.add("Outdoor Humidity", humidityOutdoor);
+
+  bool bufferSent = false;
+
+  bufferSent = ubidots.send(WEBHOOK_NAME, PUBLIC); // Will use particle webhooks to send data
+
 
   Particle.publish("TempF",String (temp));
   Particle.publish("Humid", String (humidity));
