@@ -87,11 +87,11 @@ void loop() {
     return;
   }
 
-  if (temp > tempOutdoor){
+  if (indoorHeatIndex > outdoorHeatIndex){
   leds.setColorRGB(0,255,0,0);
   }
 
-  if (temp < tempOutdoor){
+  if (indoorHeatIndex < outdoorHeatIndex){
     leds.setColorRGB(0,0,0,255);
   }
 
@@ -104,7 +104,7 @@ void loop() {
 
   bool bufferSent = false;
 
-  bufferSent = ubidots.send(WEBHOOK_NAME, PUBLIC); // Will use particle webhooks to send data
+  bufferSent = ubidots.send(WEBHOOK_NAME, PUBLIC); 
 
 
   Particle.publish("TempF",String (temp));
