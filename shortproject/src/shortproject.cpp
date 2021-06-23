@@ -101,6 +101,9 @@ void loop() {
   ubidots.add("Indoor Humidity", humidity);
   ubidots.add("Outdoor Temp", tempOutdoor);
   ubidots.add("Outdoor Humidity", humidityOutdoor);
+  ubidots.add("Indoor Heat Index",indoorHeatIndex(temp, humidity));
+  ubidots.add("Outdoor Heat Index", outdoorHeatIndex(tempOutdoor, humidityOutdoor));
+
 
   bool bufferSent = false;
 
