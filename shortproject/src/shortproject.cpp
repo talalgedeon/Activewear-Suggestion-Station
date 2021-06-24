@@ -60,9 +60,9 @@ void setup() {
   SeeedOled.setPageMode();
 
   SeeedOled.setTextXY(2, 0);
-  SeeedOled.putString("Particle");
+  SeeedOled.putString("Active");
   SeeedOled.setTextXY(3, 0);
-  SeeedOled.putString("Weather");
+  SeeedOled.putString("Wear");
   SeeedOled.setTextXY(4, 0);
   SeeedOled.putString("Station");
 
