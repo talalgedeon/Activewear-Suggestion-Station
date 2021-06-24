@@ -22,43 +22,45 @@
 void setup();
 void loop();
 void setCurrentWeather(const char *event, const char *data);
-void updateDisplay (int temp, int humidity, int tempOutdoor , int humidityOutdoor);
 double outdoorHeatIndex (float tempOutdoor, float humidityOutdoor);
 #line 16 "/Users/talalagedeon/Desktop/particlePDP/shortproject/src/shortproject.ino"
-#define DHTPIN A0
+#define DHTPIN A0 // Defining Temp/Humd pin
 
-#define DHTTYPE DHT11
+#define DHTTYPE DHT11 // Defining DHT11
 
-const char *WEBHOOK_NAME = "Ubidots";
+const char *WEBHOOK_NAME = "Ubidots"; // Defining Ubidots webhook name
 
-Ubidots ubidots("webhook", UBI_PARTICLE);
+Ubidots ubidots("webhook", UBI_PARTICLE); // Ubidots constant 
 
-DHT dht(DHTPIN, DHTTYPE);
+DHT dht(DHTPIN, DHTTYPE); // Temp/&amp;Humi object
 
-ChainableLED leds (RX, TX, 1);
+ChainableLED leds (RX, TX, 1); // LED object with respective pins
 
-void updateDisplay(int temp, int humidity);
-double indoorHeatIndex (float temp, float humidity);
-double outdoorHeatIndex (float temp, float humidity);
+void updateDisplay (int temp, int humidity, double indoorHeatIndex , double outdoorHeatIndex); 
+double indoorHeatIndex (float temp, float humidity); //  global indoor heat index variable
+double outdoorHeatIndex (float temp, float humidity);//  global outdoor heat index variable
 
-float tempOutdoor = -100;
-float humidityOutdoor = -1; 
+float tempOutdoor = -100; //  global outdoor temp variable
+float humidityOutdoor = -1; //  global outdoor humditiy variable
 
 
 void setup() {
   Serial.begin(9600);
-  Serial.println("DHT11 test");
+  Serial.println("Active Wear Station"); 
   
-  dht.begin();
-  leds.init();
+  dht.begin();// initialize DHT library
+  leds.init();// initialize LED library
 
   Wire.begin();
-  SeeedOled.init();
+  SeeedOled.init(); // initialize display library
 
+// Clearing display
   SeeedOled.clearDisplay();
   SeeedOled.setNormalDisplay();
   SeeedOled.setPageMode();
 
+
+// Adding Active Wear Station at setup
   SeeedOled.setTextXY(2, 0);
   SeeedOled.putString("Active");
   SeeedOled.setTextXY(3, 0);
@@ -66,27 +68,36 @@ void setup() {
   SeeedOled.setTextXY(4, 0);
   SeeedOled.putString("Station");
 
+// Subscribing to GetWeatherForecast webhook
   Particle.subscribe(System.deviceID() + "/GetWeatherForecast/", setCurrentWeather, MY_DEVICES);
 }
 
 void loop() {
   delay(50000);
 
+// Read Humidity Data
   float humidity = dht.getHumidity();
+
+// Read Temp Data
   float temp = dht.getTempFarenheit();
+
+//  Publishing every 15 min
   const unsigned long publishPeriod = 15 * 60 * 1000;
   static unsigned long lastPublish = 10000 - publishPeriod;
 
+// Check time since last publish occurred and publish collected Outdoor weather forcast data
   if (millis() - lastPublish >= publishPeriod) {
     lastPublish = millis();
     Particle.publish("GetWeatherForecast", PRIVATE);
   }
 
+// Check if any indoor data reads have faild
   if (isnan(humidity) || isnan(temp)){
     Serial.println("Failed to read from DHT sensor");
     return;
   }
 
+// LED logic
   if (indoorHeatIndex > outdoorHeatIndex){
   leds.setColorRGB(0,255,0,0);
   }
@@ -95,8 +106,10 @@ void loop() {
     leds.setColorRGB(0,0,0,255);
   }
 
+// Updating OLED Display
   updateDisplay(temp, humidity, tempOutdoor, humidityOutdoor);
 
+// Ubidots Variables publish into Ubidots dashboard
   ubidots.add("Indoor Temp", temp);
   ubidots.add("Indoor Humidity", humidity);
   ubidots.add("Outdoor Temp", tempOutdoor);
@@ -104,12 +117,11 @@ void loop() {
   ubidots.add("Indoor Heat Index",indoorHeatIndex(temp, humidity));
   ubidots.add("Outdoor Heat Index", outdoorHeatIndex(tempOutdoor, humidityOutdoor));
 
-
   bool bufferSent = false;
 
   bufferSent = ubidots.send(WEBHOOK_NAME, PUBLIC); 
 
-
+// Particle publish into console 
   Particle.publish("TempF",String (temp));
   Particle.publish("Humid", String (humidity));
   Particle.publish("Indoor Heat Index",String(indoorHeatIndex(temp, humidity)));
@@ -117,6 +129,7 @@ void loop() {
 
 }
 
+// Json Parser
 void setCurrentWeather(const char *event, const char *data) {
     Log.info("subscriptionHandler %s", data);
     JSONValue outerObj = JSONValue::parseCopy(data);
@@ -130,8 +143,8 @@ void setCurrentWeather(const char *event, const char *data) {
         }
     }}
 
-
-void updateDisplay (int temp, int humidity, int tempOutdoor , int humidityOutdoor)
+// Updating OLED Display
+void updateDisplay (int temp, int humidity, double indoorHeatIndex , double outdoorHeatIndex)
 {
   SeeedOled.clearDisplay(), 
   SeeedOled.setTextXY(1, 0);
@@ -145,17 +158,18 @@ void updateDisplay (int temp, int humidity, int tempOutdoor , int humidityOutdoo
   SeeedOled.putString("%");
 
   SeeedOled.setTextXY(4, 0);
-  SeeedOled.putString("Otdoor Temp: ");
-  SeeedOled.putNumber(tempOutdoor);
+  SeeedOled.putString("In Index: ");
+  SeeedOled.putNumber(indoorHeatIndex);
   SeeedOled.putString("F");
 
   SeeedOled.setTextXY(5, 0);
-  SeeedOled.putString("Otdoor Humd: ");
-  SeeedOled.putNumber(humidityOutdoor);
-  SeeedOled.putString("%");
+  SeeedOled.putString("Out Index: ");
+  SeeedOled.putNumber(outdoorHeatIndex);
+  SeeedOled.putString("F");
 
 }
 
+// Indoor heat index equation
 double indoorHeatIndex (float temp, float humidity) {
     const double c1 = -42.379;
     const double c2 = 2.04901523;
@@ -179,6 +193,7 @@ double indoorHeatIndex (float temp, float humidity) {
   return heatIndex;
 }   
 
+// Outdoor heat index equation
 double outdoorHeatIndex (float tempOutdoor, float humidityOutdoor) {
     const double c1 = -42.379;
     const double c2 = 2.04901523;
