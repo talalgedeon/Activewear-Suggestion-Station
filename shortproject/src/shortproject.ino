@@ -171,14 +171,14 @@ void updateDisplay (int temp, int humidity, double indoorHeatIndex , double outd
   SeeedOled.putString("%");
 
   SeeedOled.setTextXY(4, 0);
-  SeeedOled.putString("In Index: ");
-  SeeedOled.putNumber(indoorHeatIndex);
+  SeeedOled.putString("Otdoor Temp: ");
+  SeeedOled.putNumber(tempOutdoor);
   SeeedOled.putString("F");
 
   SeeedOled.setTextXY(5, 0);
-  SeeedOled.putString("Out Index: ");
-  SeeedOled.putNumber(outdoorHeatIndex);
-  SeeedOled.putString("F");
+  SeeedOled.putString("Otdoor Humd: ");
+  SeeedOled.putNumber(humidityOutdoor);
+  SeeedOled.putString("%");
 
 }
 

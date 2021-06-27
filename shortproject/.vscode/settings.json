@@ -6,6 +6,6 @@
         "*.ino": "cpp"
     },
     "particle.firmwareVersion": "3.0.0",
-    "particle.targetPlatform": "argon",
-    "particle.targetDevice": "e00fce68fb250bed373ebcc5"
+    "particle.targetPlatform": "boron",
+    "particle.targetDevice": "e00fce68fe9ae1a9d722f6ab"
 }
