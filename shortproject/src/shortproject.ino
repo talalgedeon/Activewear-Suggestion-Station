@@ -117,10 +117,6 @@ void loop() {
     leds.setColorRGB(0,0,255,0);
   }
 
-  if (indoorHeatIndex > lowerBound && myVal < outdoorHeatIndex) {
-    leds.setColorRGB(0,0,255,0);
-  }
-
 // Updating OLED Display
   updateDisplay(temp, humidity, tempOutdoor, humidityOutdoor);
 
