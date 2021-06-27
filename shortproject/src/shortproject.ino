@@ -105,14 +105,18 @@ void loop() {
   }
 
 // LED light logic based on indoor vs outdoor heat indexes
-  if (indoorHeatIndex > outdoorHeatIndex){
+
+// Indoor heat index lower than outdoor heat index turn blue
+  if (indoorHeatIndex < outdoorHeatIndex){
   leds.setColorRGB(0,255,0,0);
   }
-
-  if (indoorHeatIndex < outdoorHeatIndex){
+  
+// Indoor heat index greater than outdoor heat index turn red
+  if (indoorHeatIndex > outdoorHeatIndex){
     leds.setColorRGB(0,0,0,255);
   }
-
+  
+// Indoor heat index equals outdoor heat index turn green
   if (indoorHeatIndex == outdoorHeatIndex){
     leds.setColorRGB(0,0,255,0);
   }

@@ -791,11 +791,11 @@ inline particle::Flags<TagT, ValueT>::Flags(ValueT val) :
       ~__shared_ptr() = default;
    d4504:	a805      	add	r0, sp, #20
    d4506:	f7ff ffad 	bl	d4464 <_ZNSt14__shared_countILN9__gnu_cxx12_Lock_policyE0EED1Ev>
-  if (indoorHeatIndex > outdoorHeatIndex){
+  if (indoorHeatIndex < outdoorHeatIndex){
    d450a:	4d64      	ldr	r5, [pc, #400]	; (d469c <loop+0x20c>)
    d450c:	4c64      	ldr	r4, [pc, #400]	; (d46a0 <loop+0x210>)
    d450e:	42a5      	cmp	r5, r4
-   d4510:	d906      	bls.n	d4520 <loop+0x90>
+   d4510:	d206      	bcs.n	d4520 <loop+0x90>
   leds.setColorRGB(0,255,0,0);
    d4512:	2300      	movs	r3, #0
    d4514:	4863      	ldr	r0, [pc, #396]	; (d46a4 <loop+0x214>)
@@ -803,9 +803,9 @@ inline particle::Flags<TagT, ValueT>::Flags(ValueT val) :
    d4518:	22ff      	movs	r2, #255	; 0xff
    d451a:	4619      	mov	r1, r3
    d451c:	f000 fc98 	bl	d4e50 <_ZN12ChainableLED11setColorRGBEhhhh>
-  if (indoorHeatIndex < outdoorHeatIndex){
+  if (indoorHeatIndex > outdoorHeatIndex){
    d4520:	42a5      	cmp	r5, r4
-   d4522:	d207      	bcs.n	d4534 <loop+0xa4>
+   d4522:	d907      	bls.n	d4534 <loop+0xa4>
     leds.setColorRGB(0,0,0,255);
    d4524:	23ff      	movs	r3, #255	; 0xff
    d4526:	9300      	str	r3, [sp, #0]
