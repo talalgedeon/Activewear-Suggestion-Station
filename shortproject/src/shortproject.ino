@@ -115,7 +115,7 @@ void loop() {
   if (indoorHeatIndex > outdoorHeatIndex){
     leds.setColorRGB(0,0,0,255);
   }
-  
+
 // Indoor heat index equals outdoor heat index turn green
   if (indoorHeatIndex == outdoorHeatIndex){
     leds.setColorRGB(0,0,255,0);
