@@ -45,6 +45,17 @@ float tempOutdoor = -100;
 //  global outdoor humditiy variable
 float humidityOutdoor = -1; 
 
+// Read Humidity Data
+float humidity = dht.getHumidity();
+
+// Read Temp Data
+float temp = dht.getTempFarenheit();
+
+double heatIndex = indoorHeatIndex(temp, humidity);
+
+double outHeatIndex = outdoorHeatIndex (tempOutdoor, humidityOutdoor);
+
+
 
 void setup() {
   Serial.begin(9600);
@@ -72,6 +83,8 @@ void setup() {
   SeeedOled.setTextXY(3, 0);
   SeeedOled.putString("Wear");
   SeeedOled.setTextXY(4, 0);
+  SeeedOled.putString("Suggestion");
+  SeeedOled.setTextXY(4, 0);
   SeeedOled.putString("Station");
 
 // Subscribing to GetWeatherForecast webhook
@@ -80,12 +93,6 @@ void setup() {
 
 void loop() {
   delay(50000);
-
-// Read Humidity Data
-  float humidity = dht.getHumidity();
-
-// Read Temp Data
-  float temp = dht.getTempFarenheit();
 
 // Check if any indoor data reads have faild
   if (isnan(humidity) || isnan(temp)){
@@ -104,22 +111,22 @@ void loop() {
     Particle.publish("GetWeatherForecast", PRIVATE);
   }
 
-// LED light logic based on indoor vs outdoor heat indexes
-
 // Indoor heat index lower than outdoor heat index turn blue
-  if (indoorHeatIndex < outdoorHeatIndex){
+  if (heatIndex > outHeatIndex){
   leds.setColorRGB(0,255,0,0);
   }
   
 // Indoor heat index greater than outdoor heat index turn red
-  if (indoorHeatIndex > outdoorHeatIndex){
+  if (heatIndex < outHeatIndex){
     leds.setColorRGB(0,0,0,255);
   }
 
 // Indoor heat index equals outdoor heat index turn green
-  if (indoorHeatIndex == outdoorHeatIndex){
-    leds.setColorRGB(0,0,255,0);
-  }
+  // if (indoorHeatIndex == outdoorHeatIndex){
+  //   leds.setColorRGB(0,0,255,0);
+  // }
+
+
 
 // Updating OLED Display
   updateDisplay(temp, humidity, tempOutdoor, humidityOutdoor);
@@ -135,9 +142,9 @@ void loop() {
   bool bufferSent = false;
   bufferSent = ubidots.send(WEBHOOK_NAME, PUBLIC); 
 
-// Particle publish into console 
-  Particle.publish("TempF",String (temp));
-  Particle.publish("Humid", String (humidity));
+// Particle publish heat indexes into console 
+  // Particle.publish("TempF",String (temp));
+  // Particle.publish("Humid", String (humidity));
   Particle.publish("Indoor Heat Index",String(indoorHeatIndex(temp, humidity)));
   Particle.publish("Outdoor Heat Index",String(outdoorHeatIndex(tempOutdoor, humidityOutdoor)));
 
@@ -164,25 +171,38 @@ void updateDisplay (int temp, int humidity, double indoorHeatIndex , double outd
 // Clearing Display before updating
   SeeedOled.clearDisplay(), 
 
+  // SeeedOled.setTextXY(1, 0);
+  // SeeedOled.putString("Indoor Temp: ");
+  // SeeedOled.putNumber(temp);
+  // SeeedOled.putString("F");
+
+  // SeeedOled.setTextXY(2, 0);
+  // SeeedOled.putString("Indoor Humd: ");
+  // SeeedOled.putNumber(humidity);
+  // SeeedOled.putString("%");
+
   SeeedOled.setTextXY(1, 0);
-  SeeedOled.putString("Indoor Temp: ");
-  SeeedOled.putNumber(temp);
+  SeeedOled.putString("In Index:");
+  SeeedOled.putNumber(heatIndex);
   SeeedOled.putString("F");
 
   SeeedOled.setTextXY(2, 0);
-  SeeedOled.putString("Indoor Humd: ");
-  SeeedOled.putNumber(humidity);
-  SeeedOled.putString("%");
-
-  SeeedOled.setTextXY(4, 0);
-  SeeedOled.putString("Otdoor Temp: ");
-  SeeedOled.putNumber(tempOutdoor);
+  SeeedOled.putString("Out Index:");
+  SeeedOled.putNumber(outHeatIndex);
   SeeedOled.putString("F");
 
-  SeeedOled.setTextXY(5, 0);
-  SeeedOled.putString("Otdoor Humd: ");
-  SeeedOled.putNumber(humidityOutdoor);
-  SeeedOled.putString("%");
+  // SeeedOled.setTextXY(3, 0);
+  // SeeedOled.putString("Clothes:");
+  // SeeedOled.putNumber(indoorHeatIndex < outdoorHeatIndex);
+  // SeeedOled.putString("Yes");
+
+  // SeeedOled.setTextXY(4, 0);
+  // SeeedOled.putString("Clothes:");
+  // SeeedOled.putNumber(indoorHeatIndex > outdoorHeatIndex);
+  // SeeedOled.putString("No");
+
+
+
 
 }
 
