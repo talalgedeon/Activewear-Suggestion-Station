@@ -31,13 +31,12 @@ DHT dht(DHTPIN, DHTTYPE);
 // LED object with respective pins
 ChainableLED leds (RX, TX, 1); 
 
-void updateDisplay (int temp, int humidity, double indoorHeatIndex , double outdoorHeatIndex);
 
-//  global indoor heat index variable
-double indoorHeatIndex (float temp, float humidity); 
+// //  global indoor heat index variable
+// double indoorHeatIndex (double temp, double humidity); 
 
-//  global outdoor heat index variable
-double outdoorHeatIndex (float temp, float humidity);
+// //  global outdoor heat index variable
+// double outdoorHeatIndex (double temp, double humidity);
 
 //  global outdoor temp variable
 float tempOutdoor = -100; 
@@ -51,9 +50,7 @@ float humidity = dht.getHumidity();
 // Read Temp Data
 float temp = dht.getTempFarenheit();
 
-double heatIndex = indoorHeatIndex(temp, humidity);
-
-double outHeatIndex = outdoorHeatIndex (tempOutdoor, humidityOutdoor);
+void updateDisplay (double inside, double outside);
 
 
 
@@ -84,18 +81,23 @@ void setup() {
   SeeedOled.putString("Wear");
   SeeedOled.setTextXY(4, 0);
   SeeedOled.putString("Suggestion");
-  SeeedOled.setTextXY(4, 0);
+  SeeedOled.setTextXY(5, 0);
   SeeedOled.putString("Station");
 
 // Subscribing to GetWeatherForecast webhook
   Particle.subscribe(System.deviceID() + "/GetWeatherForecast/", setCurrentWeather, MY_DEVICES);
+  
 }
 
 void loop() {
   delay(50000);
 
+double inside = indoorHeatIndex(temp, humidity);
+
+double outside = outdoorHeatIndex (tempOutdoor, humidityOutdoor);
+
 // Check if any indoor data reads have faild
-  if (isnan(humidity) || isnan(temp)){
+  if (isnan(inside) || isnan(outside)){
     Serial.println("Failed to read from DHT sensor");
     return;
   }
@@ -112,12 +114,12 @@ void loop() {
   }
 
 // Indoor heat index lower than outdoor heat index turn blue
-  if (heatIndex > outHeatIndex){
+  if (inside < outside){
   leds.setColorRGB(0,255,0,0);
   }
   
 // Indoor heat index greater than outdoor heat index turn red
-  if (heatIndex < outHeatIndex){
+  if (inside > outside){
     leds.setColorRGB(0,0,0,255);
   }
 
@@ -129,7 +131,7 @@ void loop() {
 
 
 // Updating OLED Display
-  updateDisplay(temp, humidity, tempOutdoor, humidityOutdoor);
+void updateDisplay (double inside, double outside);
 
 // Ubidots Variables publish into Ubidots dashboard
   ubidots.add("Indoor Temp", temp);
@@ -148,6 +150,9 @@ void loop() {
   Particle.publish("Indoor Heat Index",String(indoorHeatIndex(temp, humidity)));
   Particle.publish("Outdoor Heat Index",String(outdoorHeatIndex(tempOutdoor, humidityOutdoor)));
 
+  Serial.println(inside);
+  Serial.println(outside);
+
 }
 
 // Json Parser for data collected from Open Weather API
@@ -165,7 +170,7 @@ void setCurrentWeather(const char *event, const char *data) {
     }}
 
 // Updating OLED Display
-void updateDisplay (int temp, int humidity, double indoorHeatIndex , double outdoorHeatIndex)
+void updateDisplay (double inside, double outside)
 {
 
 // Clearing Display before updating
@@ -183,12 +188,12 @@ void updateDisplay (int temp, int humidity, double indoorHeatIndex , double outd
 
   SeeedOled.setTextXY(1, 0);
   SeeedOled.putString("In Index:");
-  SeeedOled.putNumber(heatIndex);
+  SeeedOled.putNumber(inside);
   SeeedOled.putString("F");
 
   SeeedOled.setTextXY(2, 0);
   SeeedOled.putString("Out Index:");
-  SeeedOled.putNumber(outHeatIndex);
+  SeeedOled.putNumber(outside);
   SeeedOled.putString("F");
 
   // SeeedOled.setTextXY(3, 0);
@@ -196,18 +201,10 @@ void updateDisplay (int temp, int humidity, double indoorHeatIndex , double outd
   // SeeedOled.putNumber(indoorHeatIndex < outdoorHeatIndex);
   // SeeedOled.putString("Yes");
 
-  // SeeedOled.setTextXY(4, 0);
-  // SeeedOled.putString("Clothes:");
-  // SeeedOled.putNumber(indoorHeatIndex > outdoorHeatIndex);
-  // SeeedOled.putString("No");
-
-
-
-
 }
 
 // Indoor heat index equation
-double indoorHeatIndex (float temp, float humidity) {
+double indoorHeatIndex (double temp, double humidity) {
     const double c1 = -42.379;
     const double c2 = 2.04901523;
     const double c3 = 10.14333127;
@@ -231,7 +228,7 @@ double indoorHeatIndex (float temp, float humidity) {
 }   
 
 // Outdoor heat index equation
-double outdoorHeatIndex (float tempOutdoor, float humidityOutdoor) {
+double outdoorHeatIndex (double tempOutdoor, double humidityOutdoor) {
     const double c1 = -42.379;
     const double c2 = 2.04901523;
     const double c3 = 10.14333127;
