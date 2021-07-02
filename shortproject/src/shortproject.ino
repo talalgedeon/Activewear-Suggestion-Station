@@ -38,6 +38,8 @@ ChainableLED leds (RX, TX, 1);
 // //  global outdoor heat index variable
 // double outdoorHeatIndex (double temp, double humidity);
 
+void updateDisplay (double inside, double outside);
+
 //  global outdoor temp variable
 float tempOutdoor = -100; 
 
@@ -50,7 +52,6 @@ float humidity = dht.getHumidity();
 // Read Temp Data
 float temp = dht.getTempFarenheit();
 
-void updateDisplay (double inside, double outside);
 
 
 
@@ -115,23 +116,17 @@ double outside = outdoorHeatIndex (tempOutdoor, humidityOutdoor);
 
 // Indoor heat index lower than outdoor heat index turn blue
   if (inside < outside){
-  leds.setColorRGB(0,255,0,0);
+  leds.setColorRGB(0,0,0,255);
   }
   
 // Indoor heat index greater than outdoor heat index turn red
   if (inside > outside){
-    leds.setColorRGB(0,0,0,255);
+    leds.setColorRGB(0,255,0,0);
   }
-
-// Indoor heat index equals outdoor heat index turn green
-  // if (indoorHeatIndex == outdoorHeatIndex){
-  //   leds.setColorRGB(0,0,255,0);
-  // }
-
 
 
 // Updating OLED Display
-void updateDisplay (double inside, double outside);
+ updateDisplay (inside, outside);
 
 // Ubidots Variables publish into Ubidots dashboard
   ubidots.add("Indoor Temp", temp);
@@ -150,7 +145,8 @@ void updateDisplay (double inside, double outside);
   Particle.publish("Indoor Heat Index",String(indoorHeatIndex(temp, humidity)));
   Particle.publish("Outdoor Heat Index",String(outdoorHeatIndex(tempOutdoor, humidityOutdoor)));
 
-  Serial.println(inside);
+  Serial.println(long(indoorHeatIndex(temp, humidity)));
+  Serial.println(long(outdoorHeatIndex(tempOutdoor, humidityOutdoor)));
   Serial.println(outside);
 
 }
