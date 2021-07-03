@@ -29,7 +29,7 @@ Ubidots ubidots("webhook", UBI_PARTICLE);
 DHT dht(DHTPIN, DHTTYPE); 
 
 // LED object with respective pins
-ChainableLED leds (RX, TX, 1); 
+ChainableLED leds (RX, TX, 1)
 
 
 // //  global indoor heat index variable
@@ -51,8 +51,6 @@ float humidity = dht.getHumidity();
 
 // Read Temp Data
 float temp = dht.getTempFarenheit();
-
-
 
 
 void setup() {
@@ -123,7 +121,6 @@ double outside = outdoorHeatIndex (tempOutdoor, humidityOutdoor);
   if (inside > outside){
     leds.setColorRGB(0,255,0,0);
   }
-
 
 // Updating OLED Display
  updateDisplay (inside, outside);
