@@ -29,7 +29,7 @@ Ubidots ubidots("webhook", UBI_PARTICLE);
 DHT dht(DHTPIN, DHTTYPE); 
 
 // LED object with respective pins
-ChainableLED leds (RX, TX, 1)
+ChainableLED leds (RX, TX, 1);
 
 
 // //  global indoor heat index variable
