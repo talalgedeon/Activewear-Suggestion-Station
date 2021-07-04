@@ -21,23 +21,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   8 .module_info_crc 00000004  000dd63c  000dd63c  0002d63c  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  9 .debug_info   002838e8  00000000  00000000  0002d640  2**0
+  9 .debug_info   0028391d  00000000  00000000  0002d640  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_abbrev 00024ca2  00000000  00000000  002b0f28  2**0
+ 10 .debug_abbrev 00024ca2  00000000  00000000  002b0f5d  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00047234  00000000  00000000  002d5bca  2**0
+ 11 .debug_loc    00047234  00000000  00000000  002d5bff  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_aranges 00003670  00000000  00000000  0031cdfe  2**0
+ 12 .debug_aranges 00003670  00000000  00000000  0031ce33  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 0000b9d0  00000000  00000000  0032046e  2**0
+ 13 .debug_ranges 0000b9d0  00000000  00000000  003204a3  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_macro  000467e5  00000000  00000000  0032be3e  2**0
+ 14 .debug_macro  000467e5  00000000  00000000  0032be73  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_line   0005d1d7  00000000  00000000  00372623  2**0
+ 15 .debug_line   0005d1d5  00000000  00000000  00372658  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_str    00142e5a  00000000  00000000  003cf7fa  2**0
+ 16 .debug_str    00142e89  00000000  00000000  003cf82d  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_frame  0000a6f4  00000000  00000000  00512654  2**2
+ 17 .debug_frame  0000a6f4  00000000  00000000  005126b8  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -116,8 +116,8 @@ void module_user_init()
     for (ctor_num=0; ctor_num < link_constructors_size/sizeof(constructor_ptr_t); ctor_num++ )
    d4078:	3501      	adds	r5, #1
    d407a:	e7f7      	b.n	d406c <module_user_init+0x10>
-   d407c:	000dd3dc 	.word	0x000dd3dc
-   d4080:	000dd414 	.word	0x000dd414
+   d407c:	000dd3e4 	.word	0x000dd3e4
+   d4080:	000dd41c 	.word	0x000dd41c
 
 000d4084 <module_user_setup>:
 
@@ -223,10 +223,10 @@ inline void spark::Logger::log(LogLevel level, const char *fmt, va_list args) co
    d40e2:	4770      	bx	lr
 
 000d40e4 <setup>:
+// Read Temp Data
 float temp = dht.getTempFarenheit();
 
-
-
+const char *PUBLISH_EVENT_NAME = "activeSuggestion";
 
 void setup() {
    d40e4:	b510      	push	{r4, lr}
@@ -359,9 +359,9 @@ class StringSumHelper : public String
    d41b8:	2003e460 	.word	0x2003e460
    d41bc:	000dc520 	.word	0x000dc520
    d41c0:	000dc527 	.word	0x000dc527
-   d41c4:	000dc52c 	.word	0x000dc52c
+   d41c4:	000dc617 	.word	0x000dc617
    d41c8:	000dc518 	.word	0x000dc518
-   d41cc:	000dc537 	.word	0x000dc537
+   d41cc:	000dc52c 	.word	0x000dc52c
    d41d0:	000d4785 	.word	0x000d4785
 
 000d41d4 <_Z13updateDisplaydd>:
@@ -441,9 +441,9 @@ void updateDisplay (double inside, double outside)
    d423e:	f000 bf64 	b.w	d510a <_ZN9SeeedOLED9putStringEPKc>
    d4242:	bf00      	nop
    d4244:	2003e480 	.word	0x2003e480
-   d4248:	000dc556 	.word	0x000dc556
-   d424c:	000dc54c 	.word	0x000dc54c
-   d4250:	000dc558 	.word	0x000dc558
+   d4248:	000dc54b 	.word	0x000dc54b
+   d424c:	000dc541 	.word	0x000dc541
+   d4250:	000dc54d 	.word	0x000dc54d
    d4254:	00000000 	.word	0x00000000
 
 000d4258 <_Z15indoorHeatIndexdd>:
@@ -1010,18 +1010,18 @@ inline particle::Flags<TagT, ValueT>::Flags(ValueT val) :
    d472c:	2003e468 	.word	0x2003e468
    d4730:	2003e260 	.word	0x2003e260
    d4734:	2003e264 	.word	0x2003e264
-   d4738:	000dc563 	.word	0x000dc563
+   d4738:	000dc558 	.word	0x000dc558
    d473c:	000dbb9f 	.word	0x000dbb9f
    d4740:	2003e445 	.word	0x2003e445
-   d4744:	000dc582 	.word	0x000dc582
+   d4744:	000dc577 	.word	0x000dc577
    d4748:	2003e460 	.word	0x2003e460
-   d474c:	000dc595 	.word	0x000dc595
+   d474c:	000dc58a 	.word	0x000dc58a
    d4750:	2003e46c 	.word	0x2003e46c
-   d4754:	000dc5a1 	.word	0x000dc5a1
-   d4758:	000dc5b1 	.word	0x000dc5b1
-   d475c:	000dc5be 	.word	0x000dc5be
-   d4760:	000dc5cf 	.word	0x000dc5cf
-   d4764:	000dc5e1 	.word	0x000dc5e1
+   d4754:	000dc596 	.word	0x000dc596
+   d4758:	000dc5a6 	.word	0x000dc5a6
+   d475c:	000dc5b3 	.word	0x000dc5b3
+   d4760:	000dc5c4 	.word	0x000dc5c4
+   d4764:	000dc5d6 	.word	0x000dc5d6
    d4768:	2003e258 	.word	0x2003e258
    d476c:	2003e25c 	.word	0x2003e25c
    d4770:	2003e444 	.word	0x2003e444
@@ -1207,10 +1207,10 @@ inline spark::JSONValue spark::JSONObjectIterator::value() const {
    d48ac:	b011      	add	sp, #68	; 0x44
    d48ae:	bdf0      	pop	{r4, r5, r6, r7, pc}
    d48b0:	2003e658 	.word	0x2003e658
-   d48b4:	000dc5f4 	.word	0x000dc5f4
-   d48b8:	000dc60b 	.word	0x000dc60b
+   d48b4:	000dc5e9 	.word	0x000dc5e9
+   d48b8:	000dc600 	.word	0x000dc600
    d48bc:	2003e264 	.word	0x2003e264
-   d48c0:	000dc610 	.word	0x000dc610
+   d48c0:	000dc605 	.word	0x000dc605
    d48c4:	2003e260 	.word	0x2003e260
 
 000d48c8 <_GLOBAL__sub_I_WEBHOOK_NAME>:
@@ -1219,6 +1219,7 @@ inline spark::JSONValue spark::JSONObjectIterator::value() const {
                            (c9 * (tempOutdoor * tempOutdoor) * (humidityOutdoor * humidityOutdoor));
 
   return outHeatIndex;
+}   
    d48c8:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
         val_(val) {
    d48ca:	4b19      	ldr	r3, [pc, #100]	; (d4930 <_GLOBAL__sub_I_WEBHOOK_NAME+0x68>)
@@ -1226,7 +1227,7 @@ Ubidots ubidots("webhook", UBI_PARTICLE);
    d48cc:	4c19      	ldr	r4, [pc, #100]	; (d4934 <_GLOBAL__sub_I_WEBHOOK_NAME+0x6c>)
    d48ce:	491a      	ldr	r1, [pc, #104]	; (d4938 <_GLOBAL__sub_I_WEBHOOK_NAME+0x70>)
    d48d0:	4e1a      	ldr	r6, [pc, #104]	; (d493c <_GLOBAL__sub_I_WEBHOOK_NAME+0x74>)
-ChainableLED leds (RX, TX, 1); 
+ChainableLED leds (RX, TX, 1);
    d48d2:	4d1b      	ldr	r5, [pc, #108]	; (d4940 <_GLOBAL__sub_I_WEBHOOK_NAME+0x78>)
    d48d4:	2200      	movs	r2, #0
    d48d6:	701a      	strb	r2, [r3, #0]
@@ -1250,7 +1251,7 @@ DHT dht(DHTPIN, DHTTYPE);
    d48f6:	2113      	movs	r1, #19
    d48f8:	4620      	mov	r0, r4
    d48fa:	f000 f862 	bl	d49c2 <_ZN3DHTC1Ehhh>
-ChainableLED leds (RX, TX, 1); 
+ChainableLED leds (RX, TX, 1);
    d48fe:	463b      	mov	r3, r7
    d4900:	2209      	movs	r2, #9
    d4902:	210a      	movs	r1, #10
@@ -1272,11 +1273,12 @@ float temp = dht.getTempFarenheit();
    d4922:	f000 fa47 	bl	d4db4 <_ZN3DHT16getTempFarenheitEv>
    d4926:	4b0c      	ldr	r3, [pc, #48]	; (d4958 <_GLOBAL__sub_I_WEBHOOK_NAME+0x90>)
    d4928:	ed83 0a00 	vstr	s0, [r3]
+}   
    d492c:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
    d492e:	bf00      	nop
    d4930:	2003e444 	.word	0x2003e444
    d4934:	2003e46c 	.word	0x2003e46c
-   d4938:	000dc614 	.word	0x000dc614
+   d4938:	000dc609 	.word	0x000dc609
    d493c:	2003e440 	.word	0x2003e440
    d4940:	2003e460 	.word	0x2003e460
    d4944:	2003e445 	.word	0x2003e445
@@ -2489,7 +2491,7 @@ void SeeedOLED::putChar(unsigned char C)
     }
 }
    d50c2:	bd70      	pop	{r4, r5, r6, pc}
-   d50c4:	000dc624 	.word	0x000dc624
+   d50c4:	000dc62a 	.word	0x000dc62a
 
 000d50c8 <_ZN9SeeedOLED12clearDisplayEv>:
 {
@@ -2713,7 +2715,7 @@ UbiProtocol* builderTcp() {
    d51da:	bf00      	nop
    d51dc:	2003e50c 	.word	0x2003e50c
    d51e0:	2003e508 	.word	0x2003e508
-   d51e4:	000dc924 	.word	0x000dc924
+   d51e4:	000dc92a 	.word	0x000dc92a
 
 000d51e8 <_Z11builderHttpv>:
 
@@ -2739,7 +2741,7 @@ UbiProtocol* builderHttp() {
    d520a:	bd10      	pop	{r4, pc}
    d520c:	2003e50c 	.word	0x2003e50c
    d5210:	2003e508 	.word	0x2003e508
-   d5214:	000dc924 	.word	0x000dc924
+   d5214:	000dc92a 	.word	0x000dc92a
 
 000d5218 <_Z10builderUdpv>:
 
@@ -2766,7 +2768,7 @@ UbiProtocol* builderUdp() {
    d523e:	bf00      	nop
    d5240:	2003e50c 	.word	0x2003e50c
    d5244:	2003e508 	.word	0x2003e508
-   d5248:	000dc924 	.word	0x000dc924
+   d5248:	000dc92a 	.word	0x000dc92a
 
 000d524c <_Z15builderParticlev>:
 
@@ -2812,7 +2814,7 @@ public:
    d528e:	4620      	mov	r0, r4
    d5290:	bd10      	pop	{r4, pc}
    d5292:	bf00      	nop
-   d5294:	000dcfb4 	.word	0x000dcfb4
+   d5294:	000dcfb8 	.word	0x000dcfb8
 
 000d5298 <_ZN9TCPClientD1Ev>:
 class TCPClient : public Client {
@@ -2850,7 +2852,7 @@ public:
    d52c2:	4798      	blx	r3
    d52c4:	4628      	mov	r0, r5
    d52c6:	bd38      	pop	{r3, r4, r5, pc}
-   d52c8:	000dcf4c 	.word	0x000dcf4c
+   d52c8:	000dcf50 	.word	0x000dcf50
 
 000d52cc <_ZNSt14_Function_baseD1Ev>:
     ~_Function_base()
@@ -3525,7 +3527,7 @@ UbiHTTP::UbiHTTP(const char* host, const int port, const char* user_agent, const
    d56e0:	7705      	strb	r5, [r0, #28]
 }
    d56e2:	bd30      	pop	{r4, r5, pc}
-   d56e4:	000dcb40 	.word	0x000dcb40
+   d56e4:	000dcb44 	.word	0x000dcb44
 
 000d56e8 <_ZN7UbiHTTP9reconnectEPKci>:
 void UbiHTTP::reconnect(const char* host, const int port) {
@@ -3598,10 +3600,10 @@ void UbiHTTP::reconnect(const char* host, const int port) {
    d5770:	b003      	add	sp, #12
    d5772:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
    d5776:	bf00      	nop
-   d5778:	000dc962 	.word	0x000dc962
+   d5778:	000dc968 	.word	0x000dc968
    d577c:	2003e510 	.word	0x2003e510
-   d5780:	000dc938 	.word	0x000dc938
-   d5784:	000dc94e 	.word	0x000dc94e
+   d5780:	000dc93e 	.word	0x000dc93e
+   d5784:	000dc954 	.word	0x000dc954
 
 000d5788 <_ZN7UbiHTTP16readServerAnswerEPc>:
 void UbiHTTP::readServerAnswer(char* response) {
@@ -3667,10 +3669,10 @@ void UbiHTTP::readServerAnswer(char* response) {
    d57f4:	f002 bc37 	b.w	d8066 <_ZN5Print7printlnEPKc>
 }
    d57f8:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
-   d57fc:	000dc987 	.word	0x000dc987
-   d5800:	000dc973 	.word	0x000dc973
+   d57fc:	000dc98d 	.word	0x000dc98d
+   d5800:	000dc979 	.word	0x000dc979
    d5804:	2003e510 	.word	0x2003e510
-   d5808:	000dc986 	.word	0x000dc986
+   d5808:	000dc98c 	.word	0x000dc98c
 
 000d580c <_ZN7UbiHTTP16waitServerAnswerEv>:
 bool UbiHTTP::waitServerAnswer() {
@@ -3713,7 +3715,7 @@ bool UbiHTTP::waitServerAnswer() {
    d5844:	2001      	movs	r0, #1
    d5846:	e7fc      	b.n	d5842 <_ZN7UbiHTTP16waitServerAnswerEv+0x36>
    d5848:	2003e510 	.word	0x2003e510
-   d584c:	000dc992 	.word	0x000dc992
+   d584c:	000dc998 	.word	0x000dc998
 
 000d5850 <_ZN7UbiHTTP8sendDataEPKcS1_PcP8UbiFlags>:
 bool UbiHTTP::sendData(const char* device_label, const char* device_name, char* payload, UbiFlags* flags) {
@@ -3956,20 +3958,20 @@ bool UbiHTTP::sendData(const char* device_label, const char* device_name, char* 
    d5a40:	4634      	mov	r4, r6
    d5a42:	e7db      	b.n	d59fc <_ZN7UbiHTTP8sendDataEPKcS1_PcP8UbiFlags+0x1ac>
    d5a44:	2003e510 	.word	0x2003e510
-   d5a48:	000dc9c5 	.word	0x000dc9c5
-   d5a4c:	000dc9dd 	.word	0x000dc9dd
-   d5a50:	000dc9e9 	.word	0x000dc9e9
-   d5a54:	000dcb0d 	.word	0x000dcb0d
-   d5a58:	000dc9f0 	.word	0x000dc9f0
-   d5a5c:	000dc9fd 	.word	0x000dc9fd
-   d5a60:	000dca0c 	.word	0x000dca0c
-   d5a64:	000dca20 	.word	0x000dca20
-   d5a68:	000dca41 	.word	0x000dca41
-   d5a6c:	000dcb0b 	.word	0x000dcb0b
-   d5a70:	000dca52 	.word	0x000dca52
-   d5a74:	000dca6e 	.word	0x000dca6e
-   d5a78:	000dca8c 	.word	0x000dca8c
-   d5a7c:	000dcaa8 	.word	0x000dcaa8
+   d5a48:	000dc9cb 	.word	0x000dc9cb
+   d5a4c:	000dc9e3 	.word	0x000dc9e3
+   d5a50:	000dc9ef 	.word	0x000dc9ef
+   d5a54:	000dcb13 	.word	0x000dcb13
+   d5a58:	000dc9f6 	.word	0x000dc9f6
+   d5a5c:	000dca03 	.word	0x000dca03
+   d5a60:	000dca12 	.word	0x000dca12
+   d5a64:	000dca26 	.word	0x000dca26
+   d5a68:	000dca47 	.word	0x000dca47
+   d5a6c:	000dcb11 	.word	0x000dcb11
+   d5a70:	000dca58 	.word	0x000dca58
+   d5a74:	000dca74 	.word	0x000dca74
+   d5a78:	000dca92 	.word	0x000dca92
+   d5a7c:	000dcaae 	.word	0x000dcaae
 
 000d5a80 <_ZN7UbiHTTP3getEPKcS1_>:
 float UbiHTTP::get(const char* device_label, const char* variable_label) {
@@ -4174,17 +4176,17 @@ float UbiHTTP::get(const char* device_label, const char* variable_label) {
    d5c26:	f002 fa1e 	bl	d8066 <_ZN5Print7printlnEPKc>
    d5c2a:	e7d7      	b.n	d5bdc <_ZN7UbiHTTP3getEPKcS1_+0x15c>
    d5c2c:	2003e510 	.word	0x2003e510
-   d5c30:	000dcad2 	.word	0x000dcad2
-   d5c34:	000dcae7 	.word	0x000dcae7
-   d5c38:	000dcae9 	.word	0x000dcae9
-   d5c3c:	000dc9dd 	.word	0x000dc9dd
-   d5c40:	000dc9e9 	.word	0x000dc9e9
-   d5c44:	000dcb0d 	.word	0x000dcb0d
-   d5c48:	000dc9f0 	.word	0x000dc9f0
-   d5c4c:	000dc9fd 	.word	0x000dc9fd
-   d5c50:	000dcaed 	.word	0x000dcaed
+   d5c30:	000dcad8 	.word	0x000dcad8
+   d5c34:	000dcaed 	.word	0x000dcaed
+   d5c38:	000dcaef 	.word	0x000dcaef
+   d5c3c:	000dc9e3 	.word	0x000dc9e3
+   d5c40:	000dc9ef 	.word	0x000dc9ef
+   d5c44:	000dcb13 	.word	0x000dcb13
+   d5c48:	000dc9f6 	.word	0x000dc9f6
+   d5c4c:	000dca03 	.word	0x000dca03
+   d5c50:	000dcaf3 	.word	0x000dcaf3
    d5c54:	cda2425f 	.word	0xcda2425f
-   d5c58:	000dcb10 	.word	0x000dcb10
+   d5c58:	000dcb16 	.word	0x000dcb16
 
 000d5c5c <_GLOBAL__sub_I__ZN7UbiHTTPC2EPKciS1_S1_>:
 }
@@ -4350,7 +4352,7 @@ UbiParticle::UbiParticle(const char* host, const int port, const char* user_agen
    d5d2c:	60c3      	str	r3, [r0, #12]
 }
    d5d2e:	bd10      	pop	{r4, pc}
-   d5d30:	000dcb58 	.word	0x000dcb58
+   d5d30:	000dcb5c 	.word	0x000dcb5c
 
 000d5d34 <_ZN18UbiProtocolHandlerD1Ev>:
 
@@ -4445,7 +4447,7 @@ void UbiProtocolHandler::add(char* variable_label, float value, char* context, u
 }
    d5dcc:	bd38      	pop	{r3, r4, r5, pc}
    d5dce:	bf00      	nop
-   d5dd0:	000dcb68 	.word	0x000dcb68
+   d5dd0:	000dcb6c 	.word	0x000dcb6c
 
 000d5dd4 <_ZN18UbiProtocolHandler12_floatToCharEPcf>:
  * Stores the float type value into the char array input
@@ -4500,7 +4502,7 @@ void UbiProtocolHandler::_floatToChar(char* str_value, float value) {
    d5e0c:	f012 02ff 	ands.w	r2, r2, #255	; 0xff
    d5e10:	d1f0      	bne.n	d5df4 <_ZN18UbiProtocolHandler12_floatToCharEPcf+0x20>
    d5e12:	e7f8      	b.n	d5e06 <_ZN18UbiProtocolHandler12_floatToCharEPcf+0x32>
-   d5e14:	000dcba7 	.word	0x000dcba7
+   d5e14:	000dcbab 	.word	0x000dcbab
 
 000d5e18 <_ZN18UbiProtocolHandler16buildHttpPayloadEPc>:
 void UbiProtocolHandler::buildHttpPayload(char* payload) {
@@ -4662,18 +4664,18 @@ void UbiProtocolHandler::buildHttpPayload(char* payload) {
    d5f4c:	b009      	add	sp, #36	; 0x24
    d5f4e:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
    d5f52:	bf00      	nop
-   d5f54:	000dcbac 	.word	0x000dcbac
-   d5f58:	000dcbd4 	.word	0x000dcbd4
-   d5f5c:	000dcbdb 	.word	0x000dcbdb
-   d5f60:	000dcbe6 	.word	0x000dcbe6
-   d5f64:	000dcbf5 	.word	0x000dcbf5
-   d5f68:	000dcbf9 	.word	0x000dcbf9
-   d5f6c:	000dc987 	.word	0x000dc987
-   d5f70:	000dcbfd 	.word	0x000dcbfd
-   d5f74:	000dcb0f 	.word	0x000dcb0f
-   d5f78:	000dcbae 	.word	0x000dcbae
-   d5f7c:	000dcbc1 	.word	0x000dcbc1
-   d5f80:	000dcbe0 	.word	0x000dcbe0
+   d5f54:	000dcbb0 	.word	0x000dcbb0
+   d5f58:	000dcbd8 	.word	0x000dcbd8
+   d5f5c:	000dcbdf 	.word	0x000dcbdf
+   d5f60:	000dcbea 	.word	0x000dcbea
+   d5f64:	000dcbf9 	.word	0x000dcbf9
+   d5f68:	000dcbfd 	.word	0x000dcbfd
+   d5f6c:	000dc98d 	.word	0x000dc98d
+   d5f70:	000dcc01 	.word	0x000dcc01
+   d5f74:	000dcb15 	.word	0x000dcb15
+   d5f78:	000dcbb2 	.word	0x000dcbb2
+   d5f7c:	000dcbc5 	.word	0x000dcbc5
+   d5f80:	000dcbe4 	.word	0x000dcbe4
 
 000d5f84 <_ZN18UbiProtocolHandler15buildTcpPayloadEPcPKcS2_>:
 void UbiProtocolHandler::buildTcpPayload(char* payload, const char* device_label, const char* device_name) {
@@ -4849,20 +4851,20 @@ void UbiProtocolHandler::buildTcpPayload(char* payload, const char* device_label
 }
    d60d2:	b009      	add	sp, #36	; 0x24
    d60d4:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
-   d60d8:	000dcb0f 	.word	0x000dcb0f
-   d60dc:	000dc924 	.word	0x000dc924
-   d60e0:	000dcc06 	.word	0x000dcc06
-   d60e4:	000dcc12 	.word	0x000dcc12
-   d60e8:	000dcc1a 	.word	0x000dcc1a
-   d60ec:	000dcbd4 	.word	0x000dcbd4
-   d60f0:	000dcbdb 	.word	0x000dcbdb
-   d60f4:	000dcbf9 	.word	0x000dcbf9
-   d60f8:	000dcbe0 	.word	0x000dcbe0
-   d60fc:	000dcc2c 	.word	0x000dcc2c
-   d6100:	000dc987 	.word	0x000dc987
-   d6104:	000dcbfd 	.word	0x000dcbfd
-   d6108:	000dcc1f 	.word	0x000dcc1f
-   d610c:	000dcc25 	.word	0x000dcc25
+   d60d8:	000dcb15 	.word	0x000dcb15
+   d60dc:	000dc92a 	.word	0x000dc92a
+   d60e0:	000dcc0a 	.word	0x000dcc0a
+   d60e4:	000dcc16 	.word	0x000dcc16
+   d60e8:	000dcc1e 	.word	0x000dcc1e
+   d60ec:	000dcbd8 	.word	0x000dcbd8
+   d60f0:	000dcbdf 	.word	0x000dcbdf
+   d60f4:	000dcbfd 	.word	0x000dcbfd
+   d60f8:	000dcbe4 	.word	0x000dcbe4
+   d60fc:	000dcc30 	.word	0x000dcc30
+   d6100:	000dc98d 	.word	0x000dc98d
+   d6104:	000dcc01 	.word	0x000dcc01
+   d6108:	000dcc23 	.word	0x000dcc23
+   d610c:	000dcc29 	.word	0x000dcc29
 
 000d6110 <_ZN18UbiProtocolHandler4sendEPKcS1_P8UbiFlags>:
 bool UbiProtocolHandler::send(const char* device_label, const char* device_name, UbiFlags* flags) {
@@ -4933,7 +4935,7 @@ bool UbiProtocolHandler::send(const char* device_label, const char* device_name,
    d6180:	f7ff fe4a 	bl	d5e18 <_ZN18UbiProtocolHandler16buildHttpPayloadEPc>
    d6184:	e7d9      	b.n	d613a <_ZN18UbiProtocolHandler4sendEPKcS1_P8UbiFlags+0x2a>
    d6186:	bf00      	nop
-   d6188:	000dcc33 	.word	0x000dcc33
+   d6188:	000dcc37 	.word	0x000dcc37
 
 000d618c <_ZN18UbiProtocolHandler4sendEPKcN8particle5FlagsI15PublishFlagTypehEE>:
 bool UbiProtocolHandler::send(const char* device_label, PublishFlags flag) {
@@ -5146,7 +5148,7 @@ UbiTCP::UbiTCP(const char* host, const int port, const char* user_agent, const c
    d62dc:	6185      	str	r5, [r0, #24]
 }
    d62de:	bd30      	pop	{r4, r5, pc}
-   d62e0:	000dcce0 	.word	0x000dcce0
+   d62e0:	000dcce4 	.word	0x000dcce4
 
 000d62e4 <_ZN6UbiTCP9reconnectEPKci>:
 void UbiTCP::reconnect(const char* host, const int port) {
@@ -5214,10 +5216,10 @@ void UbiTCP::reconnect(const char* host, const int port) {
 }
    d6366:	e8bd 8ff8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, sl, fp, pc}
    d636a:	bf00      	nop
-   d636c:	000dcc43 	.word	0x000dcc43
+   d636c:	000dcc47 	.word	0x000dcc47
    d6370:	2003e5b4 	.word	0x2003e5b4
-   d6374:	000dc938 	.word	0x000dc938
-   d6378:	000dc94e 	.word	0x000dc94e
+   d6374:	000dc93e 	.word	0x000dc93e
+   d6378:	000dc954 	.word	0x000dc954
 
 000d637c <_ZN6UbiTCP21buildAndSendGetPacketEPKcS1_>:
 void UbiTCP::buildAndSendGetPacket(const char* device_label, const char* variable_labels) {
@@ -5314,13 +5316,13 @@ void UbiTCP::buildAndSendGetPacket(const char* device_label, const char* variabl
    d643c:	bd70      	pop	{r4, r5, r6, pc}
    d643e:	bf00      	nop
    d6440:	2003e5b4 	.word	0x2003e5b4
-   d6444:	000dcc5b 	.word	0x000dcc5b
-   d6448:	000dcc5e 	.word	0x000dcc5e
-   d644c:	000dcc04 	.word	0x000dcc04
-   d6450:	000dcc2e 	.word	0x000dcc2e
-   d6454:	000dcc76 	.word	0x000dcc76
-   d6458:	000dcc60 	.word	0x000dcc60
-   d645c:	000dcc75 	.word	0x000dcc75
+   d6444:	000dcc5f 	.word	0x000dcc5f
+   d6448:	000dcc62 	.word	0x000dcc62
+   d644c:	000dcc08 	.word	0x000dcc08
+   d6450:	000dcc32 	.word	0x000dcc32
+   d6454:	000dcc7a 	.word	0x000dcc7a
+   d6458:	000dcc64 	.word	0x000dcc64
+   d645c:	000dcc79 	.word	0x000dcc79
 
 000d6460 <_ZN6UbiTCP16waitServerAnswerEv>:
 bool UbiTCP::waitServerAnswer() {
@@ -5363,7 +5365,7 @@ bool UbiTCP::waitServerAnswer() {
    d6498:	2001      	movs	r0, #1
    d649a:	e7fc      	b.n	d6496 <_ZN6UbiTCP16waitServerAnswerEv+0x36>
    d649c:	2003e5b4 	.word	0x2003e5b4
-   d64a0:	000dc992 	.word	0x000dc992
+   d64a0:	000dc998 	.word	0x000dc998
 
 000d64a4 <_ZN6UbiTCP14parseTCPAnswerEPKcPc>:
 float UbiTCP::parseTCPAnswer(const char* request_type, char* response) {
@@ -5459,11 +5461,11 @@ float UbiTCP::parseTCPAnswer(const char* request_type, char* response) {
   float result = ERROR_VALUE;
    d654e:	ed9f 0a06 	vldr	s0, [pc, #24]	; d6568 <_ZN6UbiTCP14parseTCPAnswerEPKcPc+0xc4>
    d6552:	e7eb      	b.n	d652c <_ZN6UbiTCP14parseTCPAnswerEPKcPc+0x88>
-   d6554:	000dc987 	.word	0x000dc987
-   d6558:	000dc973 	.word	0x000dc973
-   d655c:	000dc986 	.word	0x000dc986
-   d6560:	000dcc7b 	.word	0x000dcc7b
-   d6564:	000dcc80 	.word	0x000dcc80
+   d6554:	000dc98d 	.word	0x000dc98d
+   d6558:	000dc979 	.word	0x000dc979
+   d655c:	000dc98c 	.word	0x000dc98c
+   d6560:	000dcc7f 	.word	0x000dcc7f
+   d6564:	000dcc84 	.word	0x000dcc84
    d6568:	cda2425f 	.word	0xcda2425f
    d656c:	2003e5b4 	.word	0x2003e5b4
 
@@ -5546,9 +5548,9 @@ bool UbiTCP::sendData(const char* device_label, const char* device_name, char* p
    d6600:	e7d5      	b.n	d65ae <_ZN6UbiTCP8sendDataEPKcS1_PcP8UbiFlags+0x3e>
    d6602:	bf00      	nop
    d6604:	2003e5b4 	.word	0x2003e5b4
-   d6608:	000dcc7b 	.word	0x000dcc7b
+   d6608:	000dcc7f 	.word	0x000dcc7f
    d660c:	cda2425f 	.word	0xcda2425f
-   d6610:	000dcc83 	.word	0x000dcc83
+   d6610:	000dcc87 	.word	0x000dcc87
 
 000d6614 <_ZN6UbiTCP3getEPKcS1_>:
 float UbiTCP::get(const char* device_label, const char* variable_label) {
@@ -5626,8 +5628,8 @@ float UbiTCP::get(const char* device_label, const char* variable_label) {
    d669e:	e7d9      	b.n	d6654 <_ZN6UbiTCP3getEPKcS1_+0x40>
    d66a0:	2003e5b4 	.word	0x2003e5b4
    d66a4:	cda2425f 	.word	0xcda2425f
-   d66a8:	000dcca1 	.word	0x000dcca1
-   d66ac:	000dcca4 	.word	0x000dcca4
+   d66a8:	000dcca5 	.word	0x000dcca5
+   d66ac:	000dcca8 	.word	0x000dcca8
 
 000d66b0 <_ZNSt8_Rb_treeIiSt4pairIKifESt10_Select1stIS2_ESt4lessIiESaIS2_EE17_M_emplace_uniqueIJS0_IifEEEES0_ISt17_Rb_tree_iteratorIS2_EbEDpOT_>:
       _Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::
@@ -5875,15 +5877,15 @@ tcpMap UbiTCP::parseMultipleValues() {
    d6844:	4620      	mov	r0, r4
    d6846:	b004      	add	sp, #16
    d6848:	e8bd 87f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, pc}
-   d684c:	000dc987 	.word	0x000dc987
-   d6850:	000dc973 	.word	0x000dc973
-   d6854:	000dc986 	.word	0x000dc986
-   d6858:	000dcc5e 	.word	0x000dcc5e
-   d685c:	000dccca 	.word	0x000dccca
+   d684c:	000dc98d 	.word	0x000dc98d
+   d6850:	000dc979 	.word	0x000dc979
+   d6854:	000dc98c 	.word	0x000dc98c
+   d6858:	000dcc62 	.word	0x000dcc62
+   d685c:	000dccce 	.word	0x000dccce
    d6860:	cda2425f 	.word	0xcda2425f
    d6864:	2003e5b4 	.word	0x2003e5b4
-   d6868:	000dcc80 	.word	0x000dcc80
-   d686c:	000dcccf 	.word	0x000dcccf
+   d6868:	000dcc84 	.word	0x000dcc84
+   d686c:	000dccd3 	.word	0x000dccd3
 
 000d6870 <_ZN6UbiTCP17getMultipleValuesEPKcS1_>:
 tcpMap UbiTCP::getMultipleValues(const char* device_label, const char* variable_labels) {
@@ -6017,7 +6019,7 @@ tcpMap UbiTCP::getMultipleValues(const char* device_label, const char* variable_
    d6946:	bf00      	nop
    d6948:	2003e5b4 	.word	0x2003e5b4
    d694c:	cda2425f 	.word	0xcda2425f
-   d6950:	000dcbfb 	.word	0x000dcbfb
+   d6950:	000dcbff 	.word	0x000dcbff
 
 000d6954 <_GLOBAL__sub_I__ZN6UbiTCPC2EPKciS1_S1_>:
 void UbiTCP::setDebug(bool debug) { _debug = debug; }
@@ -6095,7 +6097,7 @@ UbiUDP::UbiUDP(const char *host, const int port, const char *user_agent, const c
    d69b0:	6185      	str	r5, [r0, #24]
 }
    d69b2:	bd30      	pop	{r4, r5, pc}
-   d69b4:	000dcda4 	.word	0x000dcda4
+   d69b4:	000dcda8 	.word	0x000dcda8
 
 000d69b8 <_GLOBAL__sub_I__ZN6UbiUDPC2EPKciS1_S1_>:
 }
@@ -6236,10 +6238,10 @@ class IPAddress : public Printable {
    d6aaa:	b00f      	add	sp, #60	; 0x3c
    d6aac:	bdf0      	pop	{r4, r5, r6, r7, pc}
    d6aae:	bf00      	nop
-   d6ab0:	000dccf0 	.word	0x000dccf0
+   d6ab0:	000dccf4 	.word	0x000dccf4
    d6ab4:	2003e5d0 	.word	0x2003e5d0
-   d6ab8:	000dce9c 	.word	0x000dce9c
-   d6abc:	000dcd7c 	.word	0x000dcd7c
+   d6ab8:	000dcea0 	.word	0x000dcea0
+   d6abc:	000dcd80 	.word	0x000dcd80
 
 000d6ac0 <_ZN7Ubidots8_builderEPcPKc11IotProtocol>:
 
@@ -6289,7 +6291,7 @@ Ubidots::Ubidots(char* token, IotProtocol iotProtocol) { _builder(token, UBI_IND
    d6b02:	4620      	mov	r0, r4
    d6b04:	bd38      	pop	{r3, r4, r5, pc}
    d6b06:	bf00      	nop
-   d6b08:	000dcdb4 	.word	0x000dcdb4
+   d6b08:	000dcdb8 	.word	0x000dcdb8
 
 000d6b0c <_ZN7UbidotsD1Ev>:
 
@@ -7647,7 +7649,7 @@ RecursiveMutex WiringBleLock::mutex_;
    d721a:	bd10      	pop	{r4, pc}
    d721c:	2003e628 	.word	0x2003e628
    d7220:	2003e620 	.word	0x2003e620
-   d7224:	000dcde0 	.word	0x000dcde0
+   d7224:	000dcde4 	.word	0x000dcde4
 
 000d7228 <_ZNSt15_Sp_counted_ptrIPN8particle6detail10FutureImplIbNS1_13FutureContextEEELN9__gnu_cxx12_Lock_policyE0EED1Ev>:
     class _Sp_counted_ptr final : public _Sp_counted_base<_Lp>
@@ -7897,7 +7899,7 @@ inline particle::Error::~Error() {
 	}
    d7350:	4620      	mov	r0, r4
    d7352:	bd38      	pop	{r3, r4, r5, pc}
-   d7354:	000dce1c 	.word	0x000dce1c
+   d7354:	000dce20 	.word	0x000dce20
 
 000d7358 <_ZNSt8functionIFvRKN8particle5ErrorEEEC1ERKS5_>:
     function<_Res(_ArgTypes...)>::
@@ -8629,7 +8631,7 @@ EthernetClass Ethernet;
 } // spark
    d77d2:	4770      	bx	lr
    d77d4:	2003e650 	.word	0x2003e650
-   d77d8:	000dce38 	.word	0x000dce38
+   d77d8:	000dce3c 	.word	0x000dce3c
 
 000d77dc <_ZN7TwoWireD1Ev>:
 private:
@@ -8753,7 +8755,7 @@ TwoWire::TwoWire(hal_i2c_interface_t i2c, const hal_i2c_config_t& conf)
 }
    d7850:	4620      	mov	r0, r4
    d7852:	bd10      	pop	{r4, pc}
-   d7854:	000dce74 	.word	0x000dce74
+   d7854:	000dce78 	.word	0x000dce78
 
 000d7858 <_ZN7TwoWire5beginEv>:
 	hal_i2c_begin(_i2c, I2C_MODE_MASTER, 0x00, NULL);
@@ -8919,7 +8921,7 @@ IPAddress::IPAddress()
    d790e:	4620      	mov	r0, r4
    d7910:	bd10      	pop	{r4, pc}
    d7912:	bf00      	nop
-   d7914:	000dce9c 	.word	0x000dce9c
+   d7914:	000dcea0 	.word	0x000dcea0
 
 000d7918 <_ZN9IPAddressC1ERK16_HAL_IPAddress_t>:
 IPAddress::IPAddress(const HAL_IPAddress& address)
@@ -8937,7 +8939,7 @@ IPAddress::IPAddress(const HAL_IPAddress& address)
    d7934:	701a      	strb	r2, [r3, #0]
 }
    d7936:	bd10      	pop	{r4, pc}
-   d7938:	000dce9c 	.word	0x000dce9c
+   d7938:	000dcea0 	.word	0x000dcea0
 
 000d793c <_ZNK9IPAddresscvbEv>:
     if (version() == 4) {
@@ -8999,7 +9001,7 @@ IPAddress::IPAddress(uint8_t first_octet, uint8_t second_octet, uint8_t third_oc
 }
    d7994:	b003      	add	sp, #12
    d7996:	bd30      	pop	{r4, r5, pc}
-   d7998:	000dce9c 	.word	0x000dce9c
+   d7998:	000dcea0 	.word	0x000dcea0
 
 000d799c <_ZN9IPAddressC1EPKh>:
 IPAddress::IPAddress(const uint8_t* addr)
@@ -9016,7 +9018,7 @@ IPAddress::IPAddress(const uint8_t* addr)
 }
    d79b0:	b002      	add	sp, #8
    d79b2:	bd10      	pop	{r4, pc}
-   d79b4:	000dce9c 	.word	0x000dce9c
+   d79b4:	000dcea0 	.word	0x000dcea0
 
 000d79b8 <_ZN12_GLOBAL__N_19skipTokenEPK9jsmntok_t>:
 
@@ -9403,7 +9405,7 @@ bool spark::JSONValue::tokenize(const char *json, size_t size, jsmntok_t **token
    d7bae:	4620      	mov	r0, r4
    d7bb0:	e7f7      	b.n	d7ba2 <_ZN5spark9JSONValue8tokenizeEPKcjPP9jsmntok_tPj+0x62>
    d7bb2:	bf00      	nop
-   d7bb4:	000dd07c 	.word	0x000dd07c
+   d7bb4:	000dd080 	.word	0x000dd080
 
 000d7bb8 <_ZN5spark9JSONValue8unescapeEP9jsmntok_tPc>:
         ++t;
@@ -9693,7 +9695,7 @@ inline spark::JSONString::JSONString() :
    d7d3e:	4620      	mov	r0, r4
    d7d40:	bd38      	pop	{r3, r4, r5, pc}
    d7d42:	bf00      	nop
-   d7d44:	000dcb0f 	.word	0x000dcb0f
+   d7d44:	000dcb15 	.word	0x000dcb15
 
 000d7d48 <_ZN5spark18JSONObjectIteratorC1EPK9jsmntok_tSt10shared_ptrINS_6detail8JSONDataEE>:
 bool spark::JSONString::operator==(const JSONString &str) const {
@@ -9805,7 +9807,7 @@ bool spark::JSONObjectIterator::next() {
 	}
    d7dc0:	4620      	mov	r0, r4
    d7dc2:	bd38      	pop	{r3, r4, r5, pc}
-   d7dc4:	000dceb0 	.word	0x000dceb0
+   d7dc4:	000dceb4 	.word	0x000dceb4
 
 000d7dc8 <_ZN5spark9JSONValue9parseCopyEPKcj>:
 spark::JSONValue spark::JSONValue::parseCopy(const char *json, size_t size) {
@@ -9912,7 +9914,7 @@ spark::JSONValue spark::JSONValue::parseCopy(const char *json, size_t size) {
    d7e68:	f7fc fac2 	bl	d43f0 <_ZNSt14__shared_countILN9__gnu_cxx12_Lock_policyE0EED1Ev>
    d7e6c:	e7c4      	b.n	d7df8 <_ZN5spark9JSONValue9parseCopyEPKcj+0x30>
    d7e6e:	bf00      	nop
-   d7e70:	000dd07c 	.word	0x000dd07c
+   d7e70:	000dd080 	.word	0x000dd080
 
 000d7e74 <_GLOBAL__sub_I__ZN5spark3LogE>:
     // This handler doesn't support direct logging
@@ -9932,7 +9934,7 @@ void spark::logProcessControlRequest(ctrl_request* req) {
 }
    d7e7a:	4770      	bx	lr
    d7e7c:	2003e658 	.word	0x2003e658
-   d7e80:	000dcec4 	.word	0x000dcec4
+   d7e80:	000dcec8 	.word	0x000dcec8
 
 000d7e84 <_ZN5spark12NetworkClass7connectEj>:
         return Network;
@@ -10232,7 +10234,7 @@ class IPAddress : public Printable {
 } // spark
    d7fe6:	4770      	bx	lr
    d7fe8:	2003e65c 	.word	0x2003e65c
-   d7fec:	000dced0 	.word	0x000dced0
+   d7fec:	000dced4 	.word	0x000dced4
 
 000d7ff0 <_ZN5Print5writeEPKhj>:
 
@@ -10621,14 +10623,14 @@ size_t Print::printFloat(double number, uint8_t digits)
    d821e:	2300      	movs	r3, #0
    d8220:	e7e8      	b.n	d81f4 <_ZN5Print10printFloatEdh+0x13c>
    d8222:	bf00      	nop
-   d8224:	000dcf04 	.word	0x000dcf04
+   d8224:	000dcf08 	.word	0x000dcf08
    d8228:	7fefffff 	.word	0x7fefffff
-   d822c:	000dcf08 	.word	0x000dcf08
+   d822c:	000dcf0c 	.word	0x000dcf0c
    d8230:	41efffff 	.word	0x41efffff
-   d8234:	000dcf0c 	.word	0x000dcf0c
+   d8234:	000dcf10 	.word	0x000dcf10
    d8238:	c1efffff 	.word	0xc1efffff
    d823c:	3fe00000 	.word	0x3fe00000
-   d8240:	000dca8a 	.word	0x000dca8a
+   d8240:	000dca90 	.word	0x000dca90
    d8244:	40240000 	.word	0x40240000
 
 000d8248 <_ZN5Print7printlnEdi>:
@@ -11364,7 +11366,7 @@ TCPClient::operator bool() {
       }
    d85bc:	4620      	mov	r0, r4
    d85be:	bd10      	pop	{r4, pc}
-   d85c0:	000dcdd0 	.word	0x000dcdd0
+   d85c0:	000dcdd4 	.word	0x000dcdd4
 
 000d85c4 <_ZNSt23_Sp_counted_ptr_inplaceIN9TCPClient4DataESaIS1_ELN9__gnu_cxx12_Lock_policyE0EED0Ev>:
       ~_Sp_counted_ptr_inplace() noexcept { }
@@ -11460,7 +11462,7 @@ IPAddress TCPClient::remoteIP() {
 }
    d8668:	4630      	mov	r0, r6
    d866a:	bd70      	pop	{r4, r5, r6, pc}
-   d866c:	000dce9c 	.word	0x000dce9c
+   d866c:	000dcea0 	.word	0x000dcea0
 
 000d8670 <_ZN9TCPClient4peekEv>:
 int TCPClient::peek() {
@@ -11799,8 +11801,8 @@ int TCPClient::connect(IPAddress ip, uint16_t port, network_interface_t nif) {
    d88d2:	601a      	str	r2, [r3, #0]
    d88d4:	e7d4      	b.n	d8880 <_ZN9TCPClient9availableEv+0x54>
    d88d6:	bf00      	nop
-   d88d8:	000dcf17 	.word	0x000dcf17
-   d88dc:	000dcf10 	.word	0x000dcf10
+   d88d8:	000dcf1b 	.word	0x000dcf1b
+   d88dc:	000dcf14 	.word	0x000dcf14
 
 000d88e0 <_ZN9TCPClient4stopEv>:
 void TCPClient::stop() {
@@ -11919,8 +11921,8 @@ TCPClient::TCPClient(sock_handle_t sock)
    d8972:	b002      	add	sp, #8
    d8974:	bd70      	pop	{r4, r5, r6, pc}
    d8976:	bf00      	nop
-   d8978:	000dcf4c 	.word	0x000dcf4c
-   d897c:	000dcf30 	.word	0x000dcf30
+   d8978:	000dcf50 	.word	0x000dcf50
+   d897c:	000dcf34 	.word	0x000dcf34
 
 000d8980 <_ZN9TCPClientC1Ev>:
 TCPClient::TCPClient()
@@ -12135,7 +12137,7 @@ class IPAddress : public Printable {
    d8aba:	4625      	mov	r5, r4
    d8abc:	e7e8      	b.n	d8a90 <_ZN9TCPClient7connectEPKctm+0xc8>
    d8abe:	bf00      	nop
-   d8ac0:	000dce9c 	.word	0x000dce9c
+   d8ac0:	000dcea0 	.word	0x000dcea0
 
 000d8ac4 <_GLOBAL__sub_I_TIME_FORMAT_DEFAULT>:
             calendar_time_cache = Convert_UnixTime_To_CalendarTime(unix_time);
@@ -12525,7 +12527,7 @@ int UDP::read(unsigned char* buffer, size_t len) {
    d8c9e:	7023      	strb	r3, [r4, #0]
    d8ca0:	4630      	mov	r0, r6
    d8ca2:	bd70      	pop	{r4, r5, r6, pc}
-   d8ca4:	000dce9c 	.word	0x000dce9c
+   d8ca4:	000dcea0 	.word	0x000dcea0
 
 000d8ca8 <_ZN3UDP10sendPacketEPKcj9IPAddresst>:
     virtual int sendPacket(const char* buffer, size_t buffer_size, IPAddress destination, uint16_t port) {
@@ -12560,7 +12562,7 @@ int UDP::read(unsigned char* buffer, size_t len) {
    d8cd6:	b009      	add	sp, #36	; 0x24
    d8cd8:	bdf0      	pop	{r4, r5, r6, r7, pc}
    d8cda:	bf00      	nop
-   d8cdc:	000dce9c 	.word	0x000dce9c
+   d8cdc:	000dcea0 	.word	0x000dcea0
 
 000d8ce0 <_ZN3UDP9endPacketEv>:
 int UDP::endPacket() {
@@ -12602,7 +12604,7 @@ int UDP::endPacket() {
    d8d16:	b009      	add	sp, #36	; 0x24
    d8d18:	bdf0      	pop	{r4, r5, r6, r7, pc}
    d8d1a:	bf00      	nop
-   d8d1c:	000dce9c 	.word	0x000dce9c
+   d8d1c:	000dcea0 	.word	0x000dcea0
 
 000d8d20 <_ZN5spark6detail23ipAddressPortToSockaddrERK9IPAddresstP8sockaddr>:
         }
@@ -12731,7 +12733,7 @@ UDP::UDP()
 }
    d8df0:	4620      	mov	r0, r4
    d8df2:	bd38      	pop	{r3, r4, r5, pc}
-   d8df4:	000dcfac 	.word	0x000dcfac
+   d8df4:	000dcfb0 	.word	0x000dcfb0
 
 000d8df8 <_ZN3UDP13releaseBufferEv>:
 void UDP::releaseBuffer() {
@@ -13032,7 +13034,7 @@ class IPAddress : public Printable {
    d8fb8:	f04f 34ff 	mov.w	r4, #4294967295	; 0xffffffff
    d8fbc:	e7f5      	b.n	d8faa <_ZN3UDP11beginPacketEPKct+0x5e>
    d8fbe:	bf00      	nop
-   d8fc0:	000dce9c 	.word	0x000dce9c
+   d8fc0:	000dcea0 	.word	0x000dcea0
 
 000d8fc4 <_ZN3UDP13receivePacketEPhjm>:
 int UDP::receivePacket(uint8_t* buffer, size_t size, system_tick_t timeout) {
@@ -13258,7 +13260,7 @@ USARTSerial::USARTSerial(hal_usart_interface_t serial, hal_usart_ring_buffer_t *
 }
    d90fc:	4620      	mov	r0, r4
    d90fe:	bd10      	pop	{r4, pc}
-   d9100:	000dd024 	.word	0x000dd024
+   d9100:	000dd028 	.word	0x000dd028
 
 000d9104 <_Z22__fetch_global_Serial1v>:
 static hal_usart_ring_buffer_t* serial1_rx_buffer = nullptr;
@@ -13429,7 +13431,7 @@ USBSerial::USBSerial(HAL_USB_USART_Serial serial, const HAL_USB_USART_Config& co
 }
    d91f4:	4620      	mov	r0, r4
    d91f6:	bd10      	pop	{r4, pc}
-   d91f8:	000dd054 	.word	0x000dd054
+   d91f8:	000dd058 	.word	0x000dd058
 
 000d91fc <_ZN9USBSerial5beginEl>:
     HAL_USB_USART_Begin(_serial, speed, NULL);
@@ -13993,7 +13995,7 @@ hal_i2c_config_t __attribute__((weak)) acquireWireBuffer()
    d94fa:	4620      	mov	r0, r4
    d94fc:	bd38      	pop	{r3, r4, r5, pc}
    d94fe:	bf00      	nop
-   d9500:	000dd07c 	.word	0x000dd07c
+   d9500:	000dd080 	.word	0x000dd080
 
 000d9504 <_Z19__fetch_global_Wirev>:
 	return defaultWireConfig();
@@ -14238,7 +14240,7 @@ TwoWire& __fetch_global_Wire()
    d96d4:	4901      	ldr	r1, [pc, #4]	; (d96dc <_ZNSt19_Sp_make_shared_tag5_S_eqERKSt9type_info+0x8>)
    d96d6:	f000 b8f9 	b.w	d98cc <_ZNKSt9type_infoeqERKS_>
    d96da:	bf00      	nop
-   d96dc:	000dd098 	.word	0x000dd098
+   d96dc:	000dd09c 	.word	0x000dd09c
 
 000d96e0 <_ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PPv>:
    d96e0:	b57f      	push	{r0, r1, r2, r3, r4, r5, r6, lr}
@@ -14280,7 +14282,7 @@ TwoWire& __fetch_global_Wire()
    d9728:	f000 f8cd 	bl	d98c6 <_ZNSt9type_infoD1Ev>
    d972c:	4620      	mov	r0, r4
    d972e:	bd10      	pop	{r4, pc}
-   d9730:	000dd0d8 	.word	0x000dd0d8
+   d9730:	000dd0dc 	.word	0x000dd0dc
 
 000d9734 <_ZN10__cxxabiv117__class_type_infoD0Ev>:
    d9734:	b510      	push	{r4, lr}
@@ -14360,7 +14362,7 @@ TwoWire& __fetch_global_Wire()
    d97d0:	f7ff ffa6 	bl	d9720 <_ZN10__cxxabiv117__class_type_infoD1Ev>
    d97d4:	4620      	mov	r0, r4
    d97d6:	bd10      	pop	{r4, pc}
-   d97d8:	000dd138 	.word	0x000dd138
+   d97d8:	000dd13c 	.word	0x000dd13c
 
 000d97dc <_ZN10__cxxabiv120__si_class_type_infoD0Ev>:
    d97dc:	b510      	push	{r4, lr}
@@ -16214,8 +16216,8 @@ TwoWire& __fetch_global_Wire()
    dab18:	e785      	b.n	daa26 <_strtod_l+0x1a6>
    dab1a:	f04f 0c01 	mov.w	ip, #1
    dab1e:	e7f6      	b.n	dab0e <_strtod_l+0x28e>
-   dab20:	000dd2cc 	.word	0x000dd2cc
-   dab24:	000dd178 	.word	0x000dd178
+   dab20:	000dd2d4 	.word	0x000dd2d4
+   dab24:	000dd17c 	.word	0x000dd17c
    dab28:	7ff00000 	.word	0x7ff00000
    dab2c:	9b1d      	ldr	r3, [sp, #116]	; 0x74
    dab2e:	1c59      	adds	r1, r3, #1
@@ -16500,13 +16502,13 @@ TwoWire& __fetch_global_Wire()
    dae08:	f04f 0b00 	mov.w	fp, #0
    dae0c:	6023      	str	r3, [r4, #0]
    dae0e:	e789      	b.n	dad24 <_strtod_l+0x4a4>
-   dae10:	000dcf05 	.word	0x000dcf05
-   dae14:	000dd18c 	.word	0x000dd18c
-   dae18:	000dcf09 	.word	0x000dcf09
-   dae1c:	000dd171 	.word	0x000dd171
-   dae20:	000dcb0f 	.word	0x000dcb0f
-   dae24:	000dd308 	.word	0x000dd308
-   dae28:	000dd2e0 	.word	0x000dd2e0
+   dae10:	000dcf09 	.word	0x000dcf09
+   dae14:	000dd190 	.word	0x000dd190
+   dae18:	000dcf0d 	.word	0x000dcf0d
+   dae1c:	000dd175 	.word	0x000dd175
+   dae20:	000dcb15 	.word	0x000dcb15
+   dae24:	000dd310 	.word	0x000dd310
+   dae28:	000dd2e8 	.word	0x000dd2e8
    dae2c:	7ff00000 	.word	0x7ff00000
    dae30:	7ca00000 	.word	0x7ca00000
    dae34:	7fefffff 	.word	0x7fefffff
@@ -16877,7 +16879,7 @@ TwoWire& __fetch_global_Wire()
    db1ec:	39500000 	.word	0x39500000
    db1f0:	000fffff 	.word	0x000fffff
    db1f4:	7fefffff 	.word	0x7fefffff
-   db1f8:	000dd1a0 	.word	0x000dd1a0
+   db1f8:	000dd1a8 	.word	0x000dd1a8
    db1fc:	4631      	mov	r1, r6
    db1fe:	4628      	mov	r0, r5
    db200:	f001 f8de 	bl	dc3c0 <__ratio>
@@ -17588,7 +17590,7 @@ TwoWire& __fetch_global_Wire()
    db91e:	2b00      	cmp	r3, #0
    db920:	d1dc      	bne.n	db8dc <__gethex+0x2bc>
    db922:	e7ed      	b.n	db900 <__gethex+0x2e0>
-   db924:	000dd2cc 	.word	0x000dd2cc
+   db924:	000dd2d4 	.word	0x000dd2d4
    db928:	1e6f      	subs	r7, r5, #1
    db92a:	f1ba 0f00 	cmp.w	sl, #0
    db92e:	d131      	bne.n	db994 <__gethex+0x374>
@@ -18331,7 +18333,7 @@ TwoWire& __fetch_global_Wire()
    dc038:	4638      	mov	r0, r7
    dc03a:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
    dc03e:	bf00      	nop
-   dc040:	000dd3d0 	.word	0x000dd3d0
+   dc040:	000dd3d8 	.word	0x000dd3d8
 
 000dc044 <__lshift>:
    dc044:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -18799,350 +18801,351 @@ TwoWire& __fetch_global_Wire()
    dc4f8:	4021 000d 405d 000d 4085 000d 4089 000d     !@..]@...@...@..
    dc508:	0000 0000 6341 6974 6576 5720 6165 2072     ....Active Wear 
    dc518:	7453 7461 6f69 006e 6341 6974 6576 5700     Station.Active.W
-   dc528:	6165 0072 7553 6767 7365 6974 6e6f 2f00     ear.Suggestion./
-   dc538:	6547 5774 6165 6874 7265 6f46 6572 6163     GetWeatherForeca
-   dc548:	7473 002f 6e49 4920 646e 7865 003a 0046     st/.In Index:.F.
-   dc558:	754f 2074 6e49 6564 3a78 4600 6961 656c     Out Index:.Faile
-   dc568:	2064 6f74 7220 6165 2064 7266 6d6f 4420     d to read from D
-   dc578:	5448 7320 6e65 6f73 0072 6547 5774 6165     HT sensor.GetWea
-   dc588:	6874 7265 6f46 6572 6163 7473 4900 646e     therForecast.Ind
-   dc598:	6f6f 2072 6554 706d 4900 646e 6f6f 2072     oor Temp.Indoor 
-   dc5a8:	7548 696d 6964 7974 4f00 7475 6f64 726f     Humidity.Outdoor
-   dc5b8:	5420 6d65 0070 754f 6474 6f6f 2072 7548      Temp.Outdoor Hu
-   dc5c8:	696d 6964 7974 4900 646e 6f6f 2072 6548     midity.Indoor He
-   dc5d8:	7461 4920 646e 7865 4f00 7475 6f64 726f     at Index.Outdoor
-   dc5e8:	4820 6165 2074 6e49 6564 0078 7573 7362      Heat Index.subs
-   dc5f8:	7263 7069 6974 6e6f 6148 646e 656c 2072     criptionHandler 
-   dc608:	7325 7400 6d65 0070 7568 006d 6577 6862     %s.temp.hum.webh
-   dc618:	6f6f 006b 6255 6469 746f 0073               ook.Ubidots.
+   dc528:	6165 0072 472f 7465 6557 7461 6568 4672     ear./GetWeatherF
+   dc538:	726f 6365 7361 2f74 4900 206e 6e49 6564     orecast/.In Inde
+   dc548:	3a78 4600 4f00 7475 4920 646e 7865 003a     x:.F.Out Index:.
+   dc558:	6146 6c69 6465 7420 206f 6572 6461 6620     Failed to read f
+   dc568:	6f72 206d 4844 2054 6573 736e 726f 4700     rom DHT sensor.G
+   dc578:	7465 6557 7461 6568 4672 726f 6365 7361     etWeatherForecas
+   dc588:	0074 6e49 6f64 726f 5420 6d65 0070 6e49     t.Indoor Temp.In
+   dc598:	6f64 726f 4820 6d75 6469 7469 0079 754f     door Humidity.Ou
+   dc5a8:	6474 6f6f 2072 6554 706d 4f00 7475 6f64     tdoor Temp.Outdo
+   dc5b8:	726f 4820 6d75 6469 7469 0079 6e49 6f64     or Humidity.Indo
+   dc5c8:	726f 4820 6165 2074 6e49 6564 0078 754f     or Heat Index.Ou
+   dc5d8:	6474 6f6f 2072 6548 7461 4920 646e 7865     tdoor Heat Index
+   dc5e8:	7300 6275 6373 6972 7470 6f69 486e 6e61     .subscriptionHan
+   dc5f8:	6c64 7265 2520 0073 6574 706d 6800 6d75     dler %s.temp.hum
+   dc608:	7700 6265 6f68 6b6f 6100 7463 7669 5365     .webhook.activeS
+   dc618:	6775 6567 7473 6f69 006e 6255 6469 746f     uggestion.Ubidot
+   dc628:	0073                                        s.
 
-000dc624 <_ZL9BasicFont>:
+000dc62a <_ZL9BasicFont>:
 	...
-   dc62c:	0000 005f 0000 0000 0000 0007 0007 0000     .._.............
-   dc63c:	1400 147f 147f 0000 2400 7f2a 122a 0000     .........$*.*...
-   dc64c:	2300 0813 6264 0000 3600 5549 5022 0000     .#..db...6IU"P..
-   dc65c:	0000 0305 0000 0000 1c00 4122 0000 0000     .........."A....
-   dc66c:	4100 1c22 0000 0000 0800 1c2a 082a 0000     .A".......*.*...
-   dc67c:	0800 3e08 0808 0000 a000 0060 0000 0000     ...>......`.....
-   dc68c:	0800 0808 0808 0000 6000 0060 0000 0000     .........``.....
-   dc69c:	2000 0810 0204 0000 3e00 4951 3e45 0000     . .......>QIE>..
-   dc6ac:	0000 7f42 0040 0000 6200 4951 4649 0000     ..B.@....bQIIF..
-   dc6bc:	2200 4941 3649 0000 1800 1214 107f 0000     ."AII6..........
-   dc6cc:	2700 4545 3945 0000 3c00 494a 3049 0000     .'EEE9...<JII0..
-   dc6dc:	0100 0971 0305 0000 3600 4949 3649 0000     ..q......6III6..
-   dc6ec:	0600 4949 1e29 0000 0000 3636 0000 0000     ..II).....66....
-   dc6fc:	0000 6cac 0000 0000 0800 2214 0041 0000     ...l......."A...
-   dc70c:	1400 1414 1414 0000 4100 1422 0008 0000     .........A".....
-   dc71c:	0200 5101 0609 0000 3200 7949 3e41 0000     ...Q.....2IyA>..
-   dc72c:	7e00 0909 7e09 0000 7f00 4949 3649 0000     .~...~....III6..
-   dc73c:	3e00 4141 2241 0000 7f00 4141 1c22 0000     .>AAA"....AA"...
-   dc74c:	7f00 4949 4149 0000 7f00 0909 0109 0000     ..IIIA..........
-   dc75c:	3e00 4141 7251 0000 7f00 0808 7f08 0000     .>AAQr..........
-   dc76c:	4100 417f 0000 0000 2000 4140 013f 0000     .A.A..... @A?...
-   dc77c:	7f00 1408 4122 0000 7f00 4040 4040 0000     ...."A....@@@@..
-   dc78c:	7f00 0c02 7f02 0000 7f00 0804 7f10 0000     ................
-   dc79c:	3e00 4141 3e41 0000 7f00 0909 0609 0000     .>AAA>..........
-   dc7ac:	3e00 5141 5e21 0000 7f00 1909 4629 0000     .>AQ!^......)F..
-   dc7bc:	2600 4949 3249 0000 0100 7f01 0101 0000     .&III2..........
-   dc7cc:	3f00 4040 3f40 0000 1f00 4020 1f20 0000     .?@@@?.... @ ...
-   dc7dc:	3f00 3840 3f40 0000 6300 0814 6314 0000     .?@8@?...c...c..
-   dc7ec:	0300 7804 0304 0000 6100 4951 4345 0000     ...x.....aQIEC..
-   dc7fc:	7f00 4141 0000 0000 0200 0804 2010 0000     ..AA......... ..
-   dc80c:	4100 7f41 0000 0000 0400 0102 0402 0000     .AA.............
-   dc81c:	8000 8080 8080 0000 0100 0402 0000 0000     ................
-   dc82c:	2000 5454 7854 0000 7f00 4448 3844 0000     . TTTx....HDD8..
-   dc83c:	3800 4444 0028 0000 3800 4444 7f48 0000     .8DD(....8DDH...
-   dc84c:	3800 5454 1854 0000 0800 097e 0002 0000     .8TTT.....~.....
-   dc85c:	1800 a4a4 7ca4 0000 7f00 0408 7804 0000     .....|.......x..
-   dc86c:	0000 007d 0000 0000 8000 7d84 0000 0000     ..}........}....
-   dc87c:	7f00 2810 0044 0000 4100 407f 0000 0000     ...(D....A.@....
-   dc88c:	7c00 1804 7804 0000 7c00 0408 007c 0000     .|...x...|..|...
-   dc89c:	3800 4444 0038 0000 fc00 2424 0018 0000     .8DD8.....$$....
-   dc8ac:	1800 2424 00fc 0000 0000 087c 0004 0000     ..$$......|.....
-   dc8bc:	4800 5454 0024 0000 0400 447f 0000 0000     .HTT$......D....
-   dc8cc:	3c00 4040 007c 0000 1c00 4020 1c20 0000     .<@@|..... @ ...
-   dc8dc:	3c00 3040 3c40 0000 4400 1028 4428 0000     .<@0@<...D(.(D..
-   dc8ec:	1c00 a0a0 007c 0000 4400 5464 444c 0000     ....|....DdTLD..
-   dc8fc:	0800 4136 0000 0000 0000 007f 0000 0000     ..6A............
-   dc90c:	4100 0836 0000 0000 0200 0101 0102 0000     .A6.............
-   dc91c:	0200 0505 0002 0000 6255 6469 746f 5073     ........UbidotsP
-   dc92c:	7261 6974 6c63 2f65 2e33 0032 7254 6979     article/3.2.Tryi
-   dc93c:	676e 7420 206f 6f63 6e6e 6365 2074 6f74     ng to connect to
-   dc94c:	0020 2c20 6120 7474 6d65 7470 6e20 6d75      . , attempt num
-   dc95c:	6562 3a72 0020 7441 6574 706d 2074 6966     ber: .Attempt fi
-   dc96c:	696e 6873 6465 5300 7265 6576 2772 2073     nished.Server's 
-   dc97c:	6572 7073 6e6f 6573 003a 2d0a 2d2d 2d2d     response:..-----
-   dc98c:	2d2d 2d2d 002d 6974 656d 756f 2c74 6320     -----.timeout, c
-   dc99c:	756f 646c 6e20 746f 7220 6165 2064 6e61     ould not read an
-   dc9ac:	2079 6572 7073 6e6f 6573 6620 6f72 206d     y response from 
-   dc9bc:	6874 2065 6f68 7473 5000 534f 2054 612f     the host.POST /a
-   dc9cc:	6970 762f 2e31 2f36 6564 6976 6563 2f73     pi/v1.6/devices/
-   dc9dc:	2000 5448 5054 312f 312e 0a0d 4800 736f     . HTTP/1.1...Hos
-   dc9ec:	3a74 0020 7355 7265 412d 6567 746e 203a     t: .User-Agent: 
-   dc9fc:	5800 412d 7475 2d68 6f54 656b 3a6e 0020     .X-Auth-Token: .
-   dca0c:	6f43 6e6e 6365 6974 6e6f 203a 6c63 736f     Connection: clos
-   dca1c:	0d65 000a 6f43 746e 6e65 2d74 7954 6570     e...Content-Type
-   dca2c:	203a 7061 6c70 6369 7461 6f69 2f6e 736a     : application/js
-   dca3c:	6e6f 0a0d 4300 6e6f 6574 746e 4c2d 6e65     on...Content-Len
-   dca4c:	7467 3a68 0020 614d 696b 676e 7220 7165     gth: .Making req
-   dca5c:	6575 7473 7420 206f 6255 6469 746f 3a73     uest to Ubidots:
-   dca6c:	000a 6177 7469 6e69 2067 6f66 2072 6573     ..waiting for se
-   dca7c:	7672 7265 6120 736e 6577 2072 2e2e 002e     rver answer ....
-   dca8c:	550a 6962 6f64 7374 2027 6553 7672 7265     .Ubidots' Server
-   dca9c:	7220 7365 6f70 736e 3a65 000a 6f43 6c75      response:..Coul
-   dcaac:	2064 6f6e 2074 6573 646e 6420 7461 2061     d not send data 
-   dcabc:	6f74 7520 6962 6f64 7374 7520 6973 676e     to ubidots using
-   dcacc:	4820 5454 0050 4547 2054 612f 6970 762f      HTTP.GET /api/v
-   dcadc:	2e31 2f36 6564 6976 6563 2f73 2f00 766c     1.6/devices/./lv
-   dcaec:	4300 6e6f 6574 746e 542d 7079 3a65 6120     .Content-Type: a
-   dcafc:	7070 696c 6163 6974 6e6f 6a2f 6f73 0d6e     pplication/json.
-   dcb0c:	0d0a 000a 6f43 6e6e 6365 6974 6e6f 4620     ....Connection F
-   dcb1c:	6961 656c 2064 6275 6469 746f 2073 202d     ailed ubidots - 
-   dcb2c:	7254 2079 6741 6961 006e 0000               Try Again...
+   dc632:	0000 005f 0000 0000 0000 0007 0007 0000     .._.............
+   dc642:	1400 147f 147f 0000 2400 7f2a 122a 0000     .........$*.*...
+   dc652:	2300 0813 6264 0000 3600 5549 5022 0000     .#..db...6IU"P..
+   dc662:	0000 0305 0000 0000 1c00 4122 0000 0000     .........."A....
+   dc672:	4100 1c22 0000 0000 0800 1c2a 082a 0000     .A".......*.*...
+   dc682:	0800 3e08 0808 0000 a000 0060 0000 0000     ...>......`.....
+   dc692:	0800 0808 0808 0000 6000 0060 0000 0000     .........``.....
+   dc6a2:	2000 0810 0204 0000 3e00 4951 3e45 0000     . .......>QIE>..
+   dc6b2:	0000 7f42 0040 0000 6200 4951 4649 0000     ..B.@....bQIIF..
+   dc6c2:	2200 4941 3649 0000 1800 1214 107f 0000     ."AII6..........
+   dc6d2:	2700 4545 3945 0000 3c00 494a 3049 0000     .'EEE9...<JII0..
+   dc6e2:	0100 0971 0305 0000 3600 4949 3649 0000     ..q......6III6..
+   dc6f2:	0600 4949 1e29 0000 0000 3636 0000 0000     ..II).....66....
+   dc702:	0000 6cac 0000 0000 0800 2214 0041 0000     ...l......."A...
+   dc712:	1400 1414 1414 0000 4100 1422 0008 0000     .........A".....
+   dc722:	0200 5101 0609 0000 3200 7949 3e41 0000     ...Q.....2IyA>..
+   dc732:	7e00 0909 7e09 0000 7f00 4949 3649 0000     .~...~....III6..
+   dc742:	3e00 4141 2241 0000 7f00 4141 1c22 0000     .>AAA"....AA"...
+   dc752:	7f00 4949 4149 0000 7f00 0909 0109 0000     ..IIIA..........
+   dc762:	3e00 4141 7251 0000 7f00 0808 7f08 0000     .>AAQr..........
+   dc772:	4100 417f 0000 0000 2000 4140 013f 0000     .A.A..... @A?...
+   dc782:	7f00 1408 4122 0000 7f00 4040 4040 0000     ...."A....@@@@..
+   dc792:	7f00 0c02 7f02 0000 7f00 0804 7f10 0000     ................
+   dc7a2:	3e00 4141 3e41 0000 7f00 0909 0609 0000     .>AAA>..........
+   dc7b2:	3e00 5141 5e21 0000 7f00 1909 4629 0000     .>AQ!^......)F..
+   dc7c2:	2600 4949 3249 0000 0100 7f01 0101 0000     .&III2..........
+   dc7d2:	3f00 4040 3f40 0000 1f00 4020 1f20 0000     .?@@@?.... @ ...
+   dc7e2:	3f00 3840 3f40 0000 6300 0814 6314 0000     .?@8@?...c...c..
+   dc7f2:	0300 7804 0304 0000 6100 4951 4345 0000     ...x.....aQIEC..
+   dc802:	7f00 4141 0000 0000 0200 0804 2010 0000     ..AA......... ..
+   dc812:	4100 7f41 0000 0000 0400 0102 0402 0000     .AA.............
+   dc822:	8000 8080 8080 0000 0100 0402 0000 0000     ................
+   dc832:	2000 5454 7854 0000 7f00 4448 3844 0000     . TTTx....HDD8..
+   dc842:	3800 4444 0028 0000 3800 4444 7f48 0000     .8DD(....8DDH...
+   dc852:	3800 5454 1854 0000 0800 097e 0002 0000     .8TTT.....~.....
+   dc862:	1800 a4a4 7ca4 0000 7f00 0408 7804 0000     .....|.......x..
+   dc872:	0000 007d 0000 0000 8000 7d84 0000 0000     ..}........}....
+   dc882:	7f00 2810 0044 0000 4100 407f 0000 0000     ...(D....A.@....
+   dc892:	7c00 1804 7804 0000 7c00 0408 007c 0000     .|...x...|..|...
+   dc8a2:	3800 4444 0038 0000 fc00 2424 0018 0000     .8DD8.....$$....
+   dc8b2:	1800 2424 00fc 0000 0000 087c 0004 0000     ..$$......|.....
+   dc8c2:	4800 5454 0024 0000 0400 447f 0000 0000     .HTT$......D....
+   dc8d2:	3c00 4040 007c 0000 1c00 4020 1c20 0000     .<@@|..... @ ...
+   dc8e2:	3c00 3040 3c40 0000 4400 1028 4428 0000     .<@0@<...D(.(D..
+   dc8f2:	1c00 a0a0 007c 0000 4400 5464 444c 0000     ....|....DdTLD..
+   dc902:	0800 4136 0000 0000 0000 007f 0000 0000     ..6A............
+   dc912:	4100 0836 0000 0000 0200 0101 0102 0000     .A6.............
+   dc922:	0200 0505 0002 0000 6255 6469 746f 5073     ........UbidotsP
+   dc932:	7261 6974 6c63 2f65 2e33 0032 7254 6979     article/3.2.Tryi
+   dc942:	676e 7420 206f 6f63 6e6e 6365 2074 6f74     ng to connect to
+   dc952:	0020 2c20 6120 7474 6d65 7470 6e20 6d75      . , attempt num
+   dc962:	6562 3a72 0020 7441 6574 706d 2074 6966     ber: .Attempt fi
+   dc972:	696e 6873 6465 5300 7265 6576 2772 2073     nished.Server's 
+   dc982:	6572 7073 6e6f 6573 003a 2d0a 2d2d 2d2d     response:..-----
+   dc992:	2d2d 2d2d 002d 6974 656d 756f 2c74 6320     -----.timeout, c
+   dc9a2:	756f 646c 6e20 746f 7220 6165 2064 6e61     ould not read an
+   dc9b2:	2079 6572 7073 6e6f 6573 6620 6f72 206d     y response from 
+   dc9c2:	6874 2065 6f68 7473 5000 534f 2054 612f     the host.POST /a
+   dc9d2:	6970 762f 2e31 2f36 6564 6976 6563 2f73     pi/v1.6/devices/
+   dc9e2:	2000 5448 5054 312f 312e 0a0d 4800 736f     . HTTP/1.1...Hos
+   dc9f2:	3a74 0020 7355 7265 412d 6567 746e 203a     t: .User-Agent: 
+   dca02:	5800 412d 7475 2d68 6f54 656b 3a6e 0020     .X-Auth-Token: .
+   dca12:	6f43 6e6e 6365 6974 6e6f 203a 6c63 736f     Connection: clos
+   dca22:	0d65 000a 6f43 746e 6e65 2d74 7954 6570     e...Content-Type
+   dca32:	203a 7061 6c70 6369 7461 6f69 2f6e 736a     : application/js
+   dca42:	6e6f 0a0d 4300 6e6f 6574 746e 4c2d 6e65     on...Content-Len
+   dca52:	7467 3a68 0020 614d 696b 676e 7220 7165     gth: .Making req
+   dca62:	6575 7473 7420 206f 6255 6469 746f 3a73     uest to Ubidots:
+   dca72:	000a 6177 7469 6e69 2067 6f66 2072 6573     ..waiting for se
+   dca82:	7672 7265 6120 736e 6577 2072 2e2e 002e     rver answer ....
+   dca92:	550a 6962 6f64 7374 2027 6553 7672 7265     .Ubidots' Server
+   dcaa2:	7220 7365 6f70 736e 3a65 000a 6f43 6c75      response:..Coul
+   dcab2:	2064 6f6e 2074 6573 646e 6420 7461 2061     d not send data 
+   dcac2:	6f74 7520 6962 6f64 7374 7520 6973 676e     to ubidots using
+   dcad2:	4820 5454 0050 4547 2054 612f 6970 762f      HTTP.GET /api/v
+   dcae2:	2e31 2f36 6564 6976 6563 2f73 2f00 766c     1.6/devices/./lv
+   dcaf2:	4300 6e6f 6574 746e 542d 7079 3a65 6120     .Content-Type: a
+   dcb02:	7070 696c 6163 6974 6e6f 6a2f 6f73 0d6e     pplication/json.
+   dcb12:	0d0a 000a 6f43 6e6e 6365 6974 6e6f 4620     ....Connection F
+   dcb22:	6961 656c 2064 6275 6469 746f 2073 202d     ailed ubidots - 
+   dcb32:	7254 2079 6741 6961 006e                    Try Again.
 
-000dcb38 <_ZTV7UbiHTTP>:
+000dcb3c <_ZTV7UbiHTTP>:
 	...
-   dcb40:	5851 000d 5a81 000d 55fd 000d 5601 000d     QX...Z...U...V..
+   dcb44:	5851 000d 5a81 000d 55fd 000d 5601 000d     QX...Z...U...V..
 
-000dcb50 <_ZTV11UbiParticle>:
+000dcb54 <_ZTV11UbiParticle>:
 	...
-   dcb58:	5ca1 000d 5c81 000d 5c8d 000d 5c91 000d     .\...\...\...\..
-   dcb68:	6f59 2075 7261 2065 6573 646e 6e69 2067     You are sending 
-   dcb78:	6f6d 6572 7420 6168 206e 6874 2065 616d     more than the ma
-   dcb88:	6978 756d 206d 666f 6320 6e6f 6573 7563     ximum of consecu
-   dcb98:	6974 6576 7620 7261 6169 6c62 7365 2500     tive variables.%
-   dcba8:	3731 0067 007b 7325 2522 2273 7b3a 7622     17g.{.%s"%s":{"v
-   dcbb8:	6c61 6575 3a22 7325 2500 2c73 7422 6d69     alue":%s.%s,"tim
-   dcbc8:	7365 6174 706d 3a22 6c25 0075 6425 6425     estamp":%lu.%d%d
-   dcbd8:	6425 2500 2573 0073 7325 3030 0030 7325     %d.%s%s.%s000.%s
-   dcbe8:	222c 6f63 746e 7865 2274 203a 257b 7d73     ,"context": {%s}
-   dcbf8:	2500 2c73 7000 7961 6f6c 6461 003a 7325     .%s,.payload:.%s
-   dcc08:	507c 534f 7c54 7325 007c 7325 7325 253a     |POST|%s|.%s%s:%
-   dcc18:	0073 7325 3e3d 2500 2473 7325 2500 4073     s.%s=>.%s$%s.%s@
-   dcc28:	6c25 0075 7325 657c 646e 5300 6e65 6964     %lu.%s|end.Sendi
-   dcc38:	676e 6420 7461 2e61 2e2e 4100 7474 6d65     ng data....Attem
-   dcc48:	7470 6e69 2067 6f74 7220 6365 6e6f 656e     pting to reconne
-   dcc58:	7463 7c00 564c 007c 6150 6c79 616f 2064     ct.|LV|.Payload 
-   dcc68:	6f66 2072 6572 7571 7365 3a74 0a00 2d2d     for request:..--
-   dcc78:	2d2d 5000 534f 0054 4b4f 4300 756f 646c     --.POST.OK.Could
-   dcc88:	6e20 746f 6320 6e6f 656e 7463 7420 206f      not connect to 
-   dcc98:	6874 2065 6f68 7473 4c00 0056 5245 4f52     the host.LV.ERRO
-   dcca8:	2052 6f63 6c75 2064 6f6e 2074 6f63 6e6e     R could not conn
-   dccb8:	6365 2074 6f74 7420 6568 7320 7265 6576     ect to the serve
-   dccc8:	0072 756e 6c6c 4500 5252 524f 0000 0000     r.null.ERROR....
+   dcb5c:	5ca1 000d 5c81 000d 5c8d 000d 5c91 000d     .\...\...\...\..
+   dcb6c:	6f59 2075 7261 2065 6573 646e 6e69 2067     You are sending 
+   dcb7c:	6f6d 6572 7420 6168 206e 6874 2065 616d     more than the ma
+   dcb8c:	6978 756d 206d 666f 6320 6e6f 6573 7563     ximum of consecu
+   dcb9c:	6974 6576 7620 7261 6169 6c62 7365 2500     tive variables.%
+   dcbac:	3731 0067 007b 7325 2522 2273 7b3a 7622     17g.{.%s"%s":{"v
+   dcbbc:	6c61 6575 3a22 7325 2500 2c73 7422 6d69     alue":%s.%s,"tim
+   dcbcc:	7365 6174 706d 3a22 6c25 0075 6425 6425     estamp":%lu.%d%d
+   dcbdc:	6425 2500 2573 0073 7325 3030 0030 7325     %d.%s%s.%s000.%s
+   dcbec:	222c 6f63 746e 7865 2274 203a 257b 7d73     ,"context": {%s}
+   dcbfc:	2500 2c73 7000 7961 6f6c 6461 003a 7325     .%s,.payload:.%s
+   dcc0c:	507c 534f 7c54 7325 007c 7325 7325 253a     |POST|%s|.%s%s:%
+   dcc1c:	0073 7325 3e3d 2500 2473 7325 2500 4073     s.%s=>.%s$%s.%s@
+   dcc2c:	6c25 0075 7325 657c 646e 5300 6e65 6964     %lu.%s|end.Sendi
+   dcc3c:	676e 6420 7461 2e61 2e2e 4100 7474 6d65     ng data....Attem
+   dcc4c:	7470 6e69 2067 6f74 7220 6365 6e6f 656e     pting to reconne
+   dcc5c:	7463 7c00 564c 007c 6150 6c79 616f 2064     ct.|LV|.Payload 
+   dcc6c:	6f66 2072 6572 7571 7365 3a74 0a00 2d2d     for request:..--
+   dcc7c:	2d2d 5000 534f 0054 4b4f 4300 756f 646c     --.POST.OK.Could
+   dcc8c:	6e20 746f 6320 6e6f 656e 7463 7420 206f      not connect to 
+   dcc9c:	6874 2065 6f68 7473 4c00 0056 5245 4f52     the host.LV.ERRO
+   dccac:	2052 6f63 6c75 2064 6f6e 2074 6f63 6e6e     R could not conn
+   dccbc:	6365 2074 6f74 7420 6568 7320 7265 6576     ect to the serve
+   dcccc:	0072 756e 6c6c 4500 5252 524f 0000 0000     r.null.ERROR....
 
-000dccd8 <_ZTV6UbiTCP>:
+000dccdc <_ZTV6UbiTCP>:
 	...
-   dcce0:	6571 000d 6615 000d 62c1 000d 6871 000d     qe...f...b..qh..
-   dccf0:	575b 7261 696e 676e 205d 6f43 6c75 2064     [Warning] Could 
-   dcd00:	6f6e 2074 6f73 766c 2065 5049 4120 6464     not solve IP Add
-   dcd10:	6572 7373 6f20 2066 6874 2065 6572 6f6d     ress of the remo
-   dcd20:	6574 6820 736f 2c74 7720 7469 2068 6f79     te host, with yo
-   dcd30:	7275 4420 534e 7320 7465 7075 202e 2020     ur DNS setup.   
-   dcd40:	2020 2020 2020 2020 550a 6973 676e 6420             .Using d
-   dcd50:	6665 7561 746c 4920 646e 7375 7274 6169     efault Industria
-   dcd60:	206c 6255 6469 746f 2073 5049 203a 3631     l Ubidots IP: 16
-   dcd70:	2e39 3535 362e 2e31 3432 0033 5245 4f52     9.55.61.243.ERRO
-   dcd80:	2052 6573 646e 6e69 2067 6176 756c 7365     R sending values
-   dcd90:	7720 7469 2068 4455 0050 0000                with UDP...
+   dcce4:	6571 000d 6615 000d 62c1 000d 6871 000d     qe...f...b..qh..
+   dccf4:	575b 7261 696e 676e 205d 6f43 6c75 2064     [Warning] Could 
+   dcd04:	6f6e 2074 6f73 766c 2065 5049 4120 6464     not solve IP Add
+   dcd14:	6572 7373 6f20 2066 6874 2065 6572 6f6d     ress of the remo
+   dcd24:	6574 6820 736f 2c74 7720 7469 2068 6f79     te host, with yo
+   dcd34:	7275 4420 534e 7320 7465 7075 202e 2020     ur DNS setup.   
+   dcd44:	2020 2020 2020 2020 550a 6973 676e 6420             .Using d
+   dcd54:	6665 7561 746c 4920 646e 7375 7274 6169     efault Industria
+   dcd64:	206c 6255 6469 746f 2073 5049 203a 3631     l Ubidots IP: 16
+   dcd74:	2e39 3535 362e 2e31 3432 0033 5245 4f52     9.55.61.243.ERRO
+   dcd84:	2052 6573 646e 6e69 2067 6176 756c 7365     R sending values
+   dcd94:	7720 7469 2068 4455 0050 0000                with UDP...
 
-000dcd9c <_ZTV6UbiUDP>:
+000dcda0 <_ZTV6UbiUDP>:
 	...
-   dcda4:	69f1 000d 6979 000d 6985 000d 6989 000d     .i..yi...i...i..
-   dcdb4:	6e69 7564 7473 6972 6c61 612e 6970 752e     industrial.api.u
-   dcdc4:	6962 6f64 7374 632e 6d6f 0000               bidots.com..
+   dcda8:	69f1 000d 6979 000d 6985 000d 6989 000d     .i..yi...i...i..
+   dcdb8:	6e69 7564 7473 6972 6c61 612e 6970 752e     industrial.api.u
+   dcdc8:	6962 6f64 7374 632e 6d6f 0000               bidots.com..
 
-000dcdd0 <_ZZNSt19_Sp_make_shared_tag5_S_tiEvE5__tag>:
-	...
-
-000dcdd8 <_ZTVN5spark13CellularClassE>:
-	...
-   dcde0:	71ef 000d 71e5 000d 71db 000d 7191 000d     .q...q...q...q..
-   dcdf0:	71cf 000d 71c3 000d 7ec5 000d 7ecd 000d     .q...q...~...~..
-   dce00:	71b7 000d 71af 000d 71a5 000d 719b 000d     .q...q...q...q..
-   dce10:	7efd 000d                                   .~..
-
-000dce14 <_ZTVSt15_Sp_counted_ptrIPN8particle6detail10FutureImplIbNS1_13FutureContextEEELN9__gnu_cxx12_Lock_policyE0EE>:
-	...
-   dce1c:	7229 000d 722f 000d 726d 000d 723d 000d     )r../r..mr..=r..
-   dce2c:	722b 000d                                   +r..
-
-000dce30 <_ZTVN5spark13EthernetClassE>:
-	...
-   dce38:	77bf 000d 77b5 000d 77ab 000d 77a1 000d     .w...w...w...w..
-   dce48:	7795 000d 7789 000d 7ec5 000d 7ecd 000d     .w...w...~...~..
-   dce58:	777d 000d 7775 000d 776b 000d 7761 000d     }w..uw..kw..aw..
-   dce68:	7efd 000d                                   .~..
-
-000dce6c <_ZTV7TwoWire>:
-	...
-   dce74:	77dd 000d 7827 000d 77ff 000d 77df 000d     .w..'x...w...w..
-   dce84:	7807 000d 780f 000d 7817 000d 781f 000d     .x...x...x...x..
-
-000dce94 <_ZTV9IPAddress>:
-	...
-   dce9c:	7899 000d 7889 000d 788b 000d               .x...x...x..
-
-000dcea8 <_ZTVSt15_Sp_counted_ptrIPN5spark6detail8JSONDataELN9__gnu_cxx12_Lock_policyE0EE>:
-	...
-   dceb0:	79e7 000d 79ed 000d 7a03 000d 79fb 000d     .y...y...z...y..
-   dcec0:	79e9 000d 7061 0070                         .y..app.
-
-000dcec8 <_ZTVN5spark12NetworkClassE>:
-	...
-   dced0:	7e85 000d 7e8f 000d 7e99 000d 7ea3 000d     .~...~...~...~..
-   dcee0:	7ead 000d 7eb9 000d 7ec5 000d 7ecd 000d     .~...~...~...~..
-   dcef0:	7ed5 000d 7ee1 000d 7ee9 000d 7ef3 000d     .~...~...~...~..
-   dcf00:	7efd 000d 616e 006e 6e69 0066 766f 0066     .~..nan.inf.ovf.
-   dcf10:	6977 6972 676e 7200 6365 2076 7265 6f72     wiring.recv erro
-   dcf20:	2072 203d 6425 0000                         r = %d..
-
-000dcf28 <_ZTVSt23_Sp_counted_ptr_inplaceIN9TCPClient4DataESaIS1_ELN9__gnu_cxx12_Lock_policyE0EE>:
-	...
-   dcf30:	85a3 000d 85c5 000d 89a3 000d 85d3 000d     ................
-   dcf40:	85a5 000d                                   ....
-
-000dcf44 <_ZTV9TCPClient>:
-	...
-   dcf4c:	5299 000d 5329 000d 8521 000d 853b 000d     .R..)S..!...;...
-   dcf5c:	882d 000d 869f 000d 8671 000d 8565 000d     -.......q...e...
-   dcf6c:	8737 000d 89c9 000d 86d3 000d 88e1 000d     7...............
-   dcf7c:	8567 000d 8599 000d 854d 000d 85d7 000d     g.......M.......
-   dcf8c:	8651 000d 5925 252d 2d6d 6425 2554 3a48     Q...%Y-%m-%dT%H:
-   dcf9c:	4d25 253a 2553 007a 7361 7463 6d69 0065     %M:%S%z.asctime.
-
-000dcfac <_ZTV3UDP>:
-	...
-   dcfb4:	5279 000d 533d 000d 8af9 000d 8c21 000d     yR..=S......!...
-   dcfc4:	8af1 000d 8b11 000d 8b2f 000d 8b49 000d     ......../...I...
-   dcfd4:	8b6d 000d 8c05 000d 8d6b 000d 8ca9 000d     m.......k.......
-   dcfe4:	8fc5 000d 8ad9 000d 8e55 000d 8f4d 000d     ........U...M...
-   dcff4:	8ce1 000d 8e83 000d 8c4b 000d 8ae7 000d     ........K.......
-   dd004:	8c89 000d 8aed 000d 8b4b 000d fff0 ffff     ........K.......
-   dd014:	0000 0000 8b65 000d                         ....e...
-
-000dd01c <_ZTV11USARTSerial>:
-	...
-   dd024:	905d 000d 90c9 000d 90a1 000d 7ff1 000d     ]...............
-   dd034:	9071 000d 908d 000d 907f 000d 909b 000d     q...............
-   dd044:	905f 000d 9063 000d                         _...c...
-
-000dd04c <_ZTV9USBSerial>:
-	...
-   dd054:	915d 000d 91c5 000d 919b 000d 7ff1 000d     ]...............
-   dd064:	918d 000d 915f 000d 916f 000d 91bf 000d     ...._...o.......
-   dd074:	917f 000d 9159 000d                         ....Y...
-
-000dd07c <_ZSt7nothrow>:
+000dcdd4 <_ZZNSt19_Sp_make_shared_tag5_S_tiEvE5__tag>:
 	...
 
-000dd07d <_ZTSSt19_Sp_make_shared_tag>:
-   dd07d:	7453 3931 535f 5f70 616d 656b 735f 6168     St19_Sp_make_sha
-   dd08d:	6572 5f64 6174 0067 0000                     red_tag....
+000dcddc <_ZTVN5spark13CellularClassE>:
+	...
+   dcde4:	71ef 000d 71e5 000d 71db 000d 7191 000d     .q...q...q...q..
+   dcdf4:	71cf 000d 71c3 000d 7ec5 000d 7ecd 000d     .q...q...~...~..
+   dce04:	71b7 000d 71af 000d 71a5 000d 719b 000d     .q...q...q...q..
+   dce14:	7efd 000d                                   .~..
 
-000dd098 <_ZTISt19_Sp_make_shared_tag>:
-   dd098:	d0d8 000d d07d 000d                         ....}...
+000dce18 <_ZTVSt15_Sp_counted_ptrIPN8particle6detail10FutureImplIbNS1_13FutureContextEEELN9__gnu_cxx12_Lock_policyE0EE>:
+	...
+   dce20:	7229 000d 722f 000d 726d 000d 723d 000d     )r../r..mr..=r..
+   dce30:	722b 000d                                   +r..
 
-000dd0a0 <_ZTIN10__cxxabiv117__class_type_infoE>:
-   dd0a0:	d138 000d d0ac 000d d15c 000d               8.......\...
+000dce34 <_ZTVN5spark13EthernetClassE>:
+	...
+   dce3c:	77bf 000d 77b5 000d 77ab 000d 77a1 000d     .w...w...w...w..
+   dce4c:	7795 000d 7789 000d 7ec5 000d 7ecd 000d     .w...w...~...~..
+   dce5c:	777d 000d 7775 000d 776b 000d 7761 000d     }w..uw..kw..aw..
+   dce6c:	7efd 000d                                   .~..
 
-000dd0ac <_ZTSN10__cxxabiv117__class_type_infoE>:
-   dd0ac:	314e 5f30 635f 7878 6261 7669 3131 5f37     N10__cxxabiv117_
-   dd0bc:	635f 616c 7373 745f 7079 5f65 6e69 6f66     _class_type_info
-   dd0cc:	0045 0000                                   E...
+000dce70 <_ZTV7TwoWire>:
+	...
+   dce78:	77dd 000d 7827 000d 77ff 000d 77df 000d     .w..'x...w...w..
+   dce88:	7807 000d 780f 000d 7817 000d 781f 000d     .x...x...x...x..
 
-000dd0d0 <_ZTVN10__cxxabiv117__class_type_infoE>:
-   dd0d0:	0000 0000 d0a0 000d 9721 000d 9735 000d     ........!...5...
-   dd0e0:	98c9 000d 98c9 000d 979f 000d 96e1 000d     ................
-   dd0f0:	9787 000d 9749 000d 9715 000d               ....I.......
+000dce98 <_ZTV9IPAddress>:
+	...
+   dcea0:	7899 000d 7889 000d 788b 000d               .x...x...x..
 
-000dd0fc <_ZTIN10__cxxabiv120__si_class_type_infoE>:
-   dd0fc:	d138 000d d108 000d d0a0 000d               8...........
+000dceac <_ZTVSt15_Sp_counted_ptrIPN5spark6detail8JSONDataELN9__gnu_cxx12_Lock_policyE0EE>:
+	...
+   dceb4:	79e7 000d 79ed 000d 7a03 000d 79fb 000d     .y...y...z...y..
+   dcec4:	79e9 000d 7061 0070                         .y..app.
 
-000dd108 <_ZTSN10__cxxabiv120__si_class_type_infoE>:
-   dd108:	314e 5f30 635f 7878 6261 7669 3231 5f30     N10__cxxabiv120_
-   dd118:	735f 5f69 6c63 7361 5f73 7974 6570 695f     _si_class_type_i
-   dd128:	666e 456f 0000 0000                         nfoE....
+000dcecc <_ZTVN5spark12NetworkClassE>:
+	...
+   dced4:	7e85 000d 7e8f 000d 7e99 000d 7ea3 000d     .~...~...~...~..
+   dcee4:	7ead 000d 7eb9 000d 7ec5 000d 7ecd 000d     .~...~...~...~..
+   dcef4:	7ed5 000d 7ee1 000d 7ee9 000d 7ef3 000d     .~...~...~...~..
+   dcf04:	7efd 000d 616e 006e 6e69 0066 766f 0066     .~..nan.inf.ovf.
+   dcf14:	6977 6972 676e 7200 6365 2076 7265 6f72     wiring.recv erro
+   dcf24:	2072 203d 6425 0000                         r = %d..
 
-000dd130 <_ZTVN10__cxxabiv120__si_class_type_infoE>:
-   dd130:	0000 0000 d0fc 000d 97c9 000d 97dd 000d     ................
-   dd140:	98c9 000d 98c9 000d 979f 000d 96e1 000d     ................
-   dd150:	989d 000d 9829 000d 97f1 000d               ....).......
+000dcf2c <_ZTVSt23_Sp_counted_ptr_inplaceIN9TCPClient4DataESaIS1_ELN9__gnu_cxx12_Lock_policyE0EE>:
+	...
+   dcf34:	85a3 000d 85c5 000d 89a3 000d 85d3 000d     ................
+   dcf44:	85a5 000d                                   ....
 
-000dd15c <_ZTISt9type_info>:
-   dd15c:	d0d8 000d d164 000d                         ....d...
+000dcf48 <_ZTV9TCPClient>:
+	...
+   dcf50:	5299 000d 5329 000d 8521 000d 853b 000d     .R..)S..!...;...
+   dcf60:	882d 000d 869f 000d 8671 000d 8565 000d     -.......q...e...
+   dcf70:	8737 000d 89c9 000d 86d3 000d 88e1 000d     7...............
+   dcf80:	8567 000d 8599 000d 854d 000d 85d7 000d     g.......M.......
+   dcf90:	8651 000d 5925 252d 2d6d 6425 2554 3a48     Q...%Y-%m-%dT%H:
+   dcfa0:	4d25 253a 2553 007a 7361 7463 6d69 0065     %M:%S%z.asctime.
 
-000dd164 <_ZTSSt9type_info>:
-   dd164:	7453 7439 7079 5f65 6e69 6f66 6900 696e     St9type_info.ini
-   dd174:	7974 0000                                   ty..
+000dcfb0 <_ZTV3UDP>:
+	...
+   dcfb8:	5279 000d 533d 000d 8af9 000d 8c21 000d     yR..=S......!...
+   dcfc8:	8af1 000d 8b11 000d 8b2f 000d 8b49 000d     ......../...I...
+   dcfd8:	8b6d 000d 8c05 000d 8d6b 000d 8ca9 000d     m.......k.......
+   dcfe8:	8fc5 000d 8ad9 000d 8e55 000d 8f4d 000d     ........U...M...
+   dcff8:	8ce1 000d 8e83 000d 8c4b 000d 8ae7 000d     ........K.......
+   dd008:	8c89 000d 8aed 000d 8b4b 000d fff0 ffff     ........K.......
+   dd018:	0000 0000 8b65 000d                         ....e...
 
-000dd178 <fpi.7566>:
-   dd178:	0035 0000 fbce ffff 03cb 0000 0001 0000     5...............
-   dd188:	0000 0000                                   ....
+000dd020 <_ZTV11USARTSerial>:
+	...
+   dd028:	905d 000d 90c9 000d 90a1 000d 7ff1 000d     ]...............
+   dd038:	9071 000d 908d 000d 907f 000d 909b 000d     q...............
+   dd048:	905f 000d 9063 000d                         _...c...
 
-000dd18c <fpinan.7602>:
-   dd18c:	0034 0000 fbce ffff 03cb 0000 0001 0000     4...............
-   dd19c:	0000 0000                                   ....
+000dd050 <_ZTV9USBSerial>:
+	...
+   dd058:	915d 000d 91c5 000d 919b 000d 7ff1 000d     ]...............
+   dd068:	918d 000d 915f 000d 916f 000d 91bf 000d     ...._...o.......
+   dd078:	917f 000d 9159 000d                         ....Y...
 
-000dd1a0 <tinytens>:
-   dd1a0:	89bc 97d8 d2b2 3c9c a733 d5a8 f623 3949     .......<3...#.I9
-   dd1b0:	a73d 44f4 0ffd 32a5 979d cf8c ba08 255b     =..D...2......[%
-   dd1c0:	6f43 64ac 0628 1168                         Co.d(.h.
-
-000dd1c8 <_ctype_>:
-   dd1c8:	2000 2020 2020 2020 2020 2828 2828 2028     .         ((((( 
-   dd1d8:	2020 2020 2020 2020 2020 2020 2020 2020                     
-   dd1e8:	8820 1010 1010 1010 1010 1010 1010 1010      ...............
-   dd1f8:	0410 0404 0404 0404 0404 1004 1010 1010     ................
-   dd208:	1010 4141 4141 4141 0101 0101 0101 0101     ..AAAAAA........
-   dd218:	0101 0101 0101 0101 0101 0101 1010 1010     ................
-   dd228:	1010 4242 4242 4242 0202 0202 0202 0202     ..BBBBBB........
-   dd238:	0202 0202 0202 0202 0202 0202 1010 1010     ................
-   dd248:	0020 0000 0000 0000 0000 0000 0000 0000      ...............
+000dd080 <_ZSt7nothrow>:
 	...
 
-000dd2cc <_C_numeric_locale>:
-   dd2cc:	ca8a 000d cb0f 000d e2d0 2003 0043 4f50     ........... C.PO
-   dd2dc:	4953 0058                                   SIX.
+000dd081 <_ZTSSt19_Sp_make_shared_tag>:
+   dd081:	7453 3931 535f 5f70 616d 656b 735f 6168     St19_Sp_make_sha
+   dd091:	6572 5f64 6174 0067 0000                     red_tag....
 
-000dd2e0 <__mprec_bigtens>:
-   dd2e0:	8000 37e0 c379 4341 6e17 b505 b8b5 4693     ...7y.AC.n.....F
-   dd2f0:	f9f5 e93f 4f03 4d38 1d32 f930 7748 5a82     ..?..O8M2.0.Hw.Z
-   dd300:	bf3c 7f73 4fdd 7515                         <.s..O.u
+000dd09c <_ZTISt19_Sp_make_shared_tag>:
+   dd09c:	d0dc 000d d081 000d                         ........
 
-000dd308 <__mprec_tens>:
-   dd308:	0000 0000 0000 3ff0 0000 0000 0000 4024     .......?......$@
-   dd318:	0000 0000 0000 4059 0000 0000 4000 408f     ......Y@.....@.@
-   dd328:	0000 0000 8800 40c3 0000 0000 6a00 40f8     .......@.....j.@
-   dd338:	0000 0000 8480 412e 0000 0000 12d0 4163     .......A......cA
-   dd348:	0000 0000 d784 4197 0000 0000 cd65 41cd     .......A....e..A
-   dd358:	0000 2000 a05f 4202 0000 e800 4876 4237     ... _..B....vH7B
-   dd368:	0000 a200 1a94 426d 0000 e540 309c 42a2     ......mB..@..0.B
-   dd378:	0000 1e90 bcc4 42d6 0000 2634 6bf5 430c     .......B..4&.k.C
-   dd388:	8000 37e0 c379 4341 a000 85d8 3457 4376     ...7y.AC....W4vC
-   dd398:	c800 674e c16d 43ab 3d00 6091 58e4 43e1     ..Ngm..C.=.`.X.C
-   dd3a8:	8c40 78b5 af1d 4415 ef50 d6e2 1ae4 444b     @..x...DP.....KD
-   dd3b8:	d592 064d f0cf 4480 4af6 c7e1 2d02 44b5     ..M....D.J...-.D
-   dd3c8:	9db4 79d9 7843 44ea                         ...yCx.D
+000dd0a4 <_ZTIN10__cxxabiv117__class_type_infoE>:
+   dd0a4:	d13c 000d d0b0 000d d160 000d               <.......`...
 
-000dd3d0 <p05.7490>:
-   dd3d0:	0005 0000 0019 0000 007d 0000               ........}...
+000dd0b0 <_ZTSN10__cxxabiv117__class_type_infoE>:
+   dd0b0:	314e 5f30 635f 7878 6261 7669 3131 5f37     N10__cxxabiv117_
+   dd0c0:	635f 616c 7373 745f 7079 5f65 6e69 6f66     _class_type_info
+   dd0d0:	0045 0000                                   E...
 
-000dd3dc <link_const_variable_data_end>:
-   dd3dc:	000d48c9 	.word	0x000d48c9
-   dd3e0:	000d55a9 	.word	0x000d55a9
-   dd3e4:	000d5c5d 	.word	0x000d5c5d
-   dd3e8:	000d6261 	.word	0x000d6261
-   dd3ec:	000d6955 	.word	0x000d6955
-   dd3f0:	000d69b9 	.word	0x000d69b9
-   dd3f4:	000d7169 	.word	0x000d7169
-   dd3f8:	000d71f9 	.word	0x000d71f9
-   dd3fc:	000d77c9 	.word	0x000d77c9
-   dd400:	000d7e75 	.word	0x000d7e75
-   dd404:	000d7fdd 	.word	0x000d7fdd
-   dd408:	000d826d 	.word	0x000d826d
-   dd40c:	000d84e5 	.word	0x000d84e5
-   dd410:	000d8ac5 	.word	0x000d8ac5
+000dd0d4 <_ZTVN10__cxxabiv117__class_type_infoE>:
+   dd0d4:	0000 0000 d0a4 000d 9721 000d 9735 000d     ........!...5...
+   dd0e4:	98c9 000d 98c9 000d 979f 000d 96e1 000d     ................
+   dd0f4:	9787 000d 9749 000d 9715 000d               ....I.......
 
-000dd414 <link_constructors_end>:
+000dd100 <_ZTIN10__cxxabiv120__si_class_type_infoE>:
+   dd100:	d13c 000d d10c 000d d0a4 000d               <...........
+
+000dd10c <_ZTSN10__cxxabiv120__si_class_type_infoE>:
+   dd10c:	314e 5f30 635f 7878 6261 7669 3231 5f30     N10__cxxabiv120_
+   dd11c:	735f 5f69 6c63 7361 5f73 7974 6570 695f     _si_class_type_i
+   dd12c:	666e 456f 0000 0000                         nfoE....
+
+000dd134 <_ZTVN10__cxxabiv120__si_class_type_infoE>:
+   dd134:	0000 0000 d100 000d 97c9 000d 97dd 000d     ................
+   dd144:	98c9 000d 98c9 000d 979f 000d 96e1 000d     ................
+   dd154:	989d 000d 9829 000d 97f1 000d               ....).......
+
+000dd160 <_ZTISt9type_info>:
+   dd160:	d0dc 000d d168 000d                         ....h...
+
+000dd168 <_ZTSSt9type_info>:
+   dd168:	7453 7439 7079 5f65 6e69 6f66 6900 696e     St9type_info.ini
+   dd178:	7974 0000                                   ty..
+
+000dd17c <fpi.7566>:
+   dd17c:	0035 0000 fbce ffff 03cb 0000 0001 0000     5...............
+   dd18c:	0000 0000                                   ....
+
+000dd190 <fpinan.7602>:
+   dd190:	0034 0000 fbce ffff 03cb 0000 0001 0000     4...............
 	...
+
+000dd1a8 <tinytens>:
+   dd1a8:	89bc 97d8 d2b2 3c9c a733 d5a8 f623 3949     .......<3...#.I9
+   dd1b8:	a73d 44f4 0ffd 32a5 979d cf8c ba08 255b     =..D...2......[%
+   dd1c8:	6f43 64ac 0628 1168                         Co.d(.h.
+
+000dd1d0 <_ctype_>:
+   dd1d0:	2000 2020 2020 2020 2020 2828 2828 2028     .         ((((( 
+   dd1e0:	2020 2020 2020 2020 2020 2020 2020 2020                     
+   dd1f0:	8820 1010 1010 1010 1010 1010 1010 1010      ...............
+   dd200:	0410 0404 0404 0404 0404 1004 1010 1010     ................
+   dd210:	1010 4141 4141 4141 0101 0101 0101 0101     ..AAAAAA........
+   dd220:	0101 0101 0101 0101 0101 0101 1010 1010     ................
+   dd230:	1010 4242 4242 4242 0202 0202 0202 0202     ..BBBBBB........
+   dd240:	0202 0202 0202 0202 0202 0202 1010 1010     ................
+   dd250:	0020 0000 0000 0000 0000 0000 0000 0000      ...............
+	...
+
+000dd2d4 <_C_numeric_locale>:
+   dd2d4:	ca90 000d cb15 000d e2d0 2003 0043 4f50     ........... C.PO
+   dd2e4:	4953 0058                                   SIX.
+
+000dd2e8 <__mprec_bigtens>:
+   dd2e8:	8000 37e0 c379 4341 6e17 b505 b8b5 4693     ...7y.AC.n.....F
+   dd2f8:	f9f5 e93f 4f03 4d38 1d32 f930 7748 5a82     ..?..O8M2.0.Hw.Z
+   dd308:	bf3c 7f73 4fdd 7515                         <.s..O.u
+
+000dd310 <__mprec_tens>:
+   dd310:	0000 0000 0000 3ff0 0000 0000 0000 4024     .......?......$@
+   dd320:	0000 0000 0000 4059 0000 0000 4000 408f     ......Y@.....@.@
+   dd330:	0000 0000 8800 40c3 0000 0000 6a00 40f8     .......@.....j.@
+   dd340:	0000 0000 8480 412e 0000 0000 12d0 4163     .......A......cA
+   dd350:	0000 0000 d784 4197 0000 0000 cd65 41cd     .......A....e..A
+   dd360:	0000 2000 a05f 4202 0000 e800 4876 4237     ... _..B....vH7B
+   dd370:	0000 a200 1a94 426d 0000 e540 309c 42a2     ......mB..@..0.B
+   dd380:	0000 1e90 bcc4 42d6 0000 2634 6bf5 430c     .......B..4&.k.C
+   dd390:	8000 37e0 c379 4341 a000 85d8 3457 4376     ...7y.AC....W4vC
+   dd3a0:	c800 674e c16d 43ab 3d00 6091 58e4 43e1     ..Ngm..C.=.`.X.C
+   dd3b0:	8c40 78b5 af1d 4415 ef50 d6e2 1ae4 444b     @..x...DP.....KD
+   dd3c0:	d592 064d f0cf 4480 4af6 c7e1 2d02 44b5     ..M....D.J...-.D
+   dd3d0:	9db4 79d9 7843 44ea                         ...yCx.D
+
+000dd3d8 <p05.7490>:
+   dd3d8:	0005 0000 0019 0000 007d 0000               ........}...
+
+000dd3e4 <link_const_variable_data_end>:
+   dd3e4:	000d48c9 	.word	0x000d48c9
+   dd3e8:	000d55a9 	.word	0x000d55a9
+   dd3ec:	000d5c5d 	.word	0x000d5c5d
+   dd3f0:	000d6261 	.word	0x000d6261
+   dd3f4:	000d6955 	.word	0x000d6955
+   dd3f8:	000d69b9 	.word	0x000d69b9
+   dd3fc:	000d7169 	.word	0x000d7169
+   dd400:	000d71f9 	.word	0x000d71f9
+   dd404:	000d77c9 	.word	0x000d77c9
+   dd408:	000d7e75 	.word	0x000d7e75
+   dd40c:	000d7fdd 	.word	0x000d7fdd
+   dd410:	000d826d 	.word	0x000d826d
+   dd414:	000d84e5 	.word	0x000d84e5
+   dd418:	000d8ac5 	.word	0x000d8ac5
+
+000dd41c <link_constructors_end>:
+   dd41c:	00000000 	.word	0x00000000

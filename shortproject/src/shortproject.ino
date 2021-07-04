@@ -31,12 +31,9 @@ DHT dht(DHTPIN, DHTTYPE);
 // LED object with respective pins
 ChainableLED leds (RX, TX, 1);
 
-
-// //  global indoor heat index variable
-// double indoorHeatIndex (double temp, double humidity); 
-
-// //  global outdoor heat index variable
-// double outdoorHeatIndex (double temp, double humidity);
+const unsigned long publishPeriod1 = 15 * 60 * 1000;
+// Last publish variable 
+static unsigned long lastPublish1 = 10000 - publishPeriod1;
 
 void updateDisplay (double inside, double outside);
 
@@ -52,6 +49,7 @@ float humidity = dht.getHumidity();
 // Read Temp Data
 float temp = dht.getTempFarenheit();
 
+const char *PUBLISH_EVENT_NAME = "activeSuggestion";
 
 void setup() {
   Serial.begin(9600);
@@ -100,6 +98,11 @@ double outside = outdoorHeatIndex (tempOutdoor, humidityOutdoor);
     Serial.println("Failed to read from DHT sensor");
     return;
   }
+
+  // if (millis() - lastPublish1 >= publishPeriod1) {
+	// 	lastPublish1 = millis();
+	// 	publishData();
+	// }
 
 //  Publishing every 15 min
   const unsigned long publishPeriod = 15 * 60 * 1000;
@@ -243,3 +246,19 @@ double outdoorHeatIndex (double tempOutdoor, double humidityOutdoor) {
 
   return outHeatIndex;
 }   
+
+
+// void publishData() {
+// 	// This just publishes some somewhat random data for testing
+
+// 	// a is a monotonically increasing integer
+// 	double insideHeatIndex = ;
+
+// 	// double value b is a cosine, so the values will rise and fall nicely over 360 steps
+// 	double outsideHeatIndex = ;
+
+
+// 	char buf[256];
+// 	snprintf(buf, sizeof(buf), "{\"Inside heat index\":%lf,\"Outside heat index\":%lf}", insideHeatIndex, outsideHeatIndex);
+// 	Particle.publish(PUBLISH_EVENT_NAME, buf, PRIVATE);
+// }
