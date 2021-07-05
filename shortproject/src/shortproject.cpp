@@ -43,10 +43,6 @@ DHT dht(DHTPIN, DHTTYPE);
 // LED object with respective pins
 ChainableLED leds (RX, TX, 1);
 
-const unsigned long publishPeriod1 = 15 * 60 * 1000;
-// Last publish variable 
-static unsigned long lastPublish1 = 10000 - publishPeriod1;
-
 void updateDisplay (double inside, double outside);
 
 //  global outdoor temp variable
@@ -61,7 +57,6 @@ float humidity = dht.getHumidity();
 // Read Temp Data
 float temp = dht.getTempFarenheit();
 
-const char *PUBLISH_EVENT_NAME = "activeSuggestion";
 
 void setup() {
   Serial.begin(9600);
@@ -95,7 +90,6 @@ void setup() {
 
 // Subscribing to GetWeatherForecast webhook
   Particle.subscribe(System.deviceID() + "/GetWeatherForecast/", setCurrentWeather, MY_DEVICES);
-  
 }
 
 void loop() {
@@ -105,16 +99,11 @@ double inside = indoorHeatIndex(temp, humidity);
 
 double outside = outdoorHeatIndex (tempOutdoor, humidityOutdoor);
 
-// Check if any indoor data reads have faild
-  if (isnan(inside) || isnan(outside)){
+// Check if any indoor data reads have failed
+  if (isnan(humidity) || isnan(temp)){
     Serial.println("Failed to read from DHT sensor");
     return;
   }
-
-  // if (millis() - lastPublish1 >= publishPeriod1) {
-	// 	lastPublish1 = millis();
-	// 	publishData();
-	// }
 
 //  Publishing every 15 min
   const unsigned long publishPeriod = 15 * 60 * 1000;
@@ -151,9 +140,11 @@ double outside = outdoorHeatIndex (tempOutdoor, humidityOutdoor);
   bool bufferSent = false;
   bufferSent = ubidots.send(WEBHOOK_NAME, PUBLIC); 
 
-// Particle publish heat indexes into console 
-  // Particle.publish("TempF",String (temp));
-  // Particle.publish("Humid", String (humidity));
+// Particle publish temperatures, humidities and heat indexes into console 
+  Particle.publish("Indoor Temp",String (temp));
+  Particle.publish("Indoor Humidity", String (humidity));
+  Particle.publish("Outdoor Temp",String (tempOutdoor));
+  Particle.publish("Outdoor Humidity", String (humidity));
   Particle.publish("Indoor Heat Index",String(indoorHeatIndex(temp, humidity)));
   Particle.publish("Outdoor Heat Index",String(outdoorHeatIndex(tempOutdoor, humidityOutdoor)));
 
@@ -274,3 +265,4 @@ double outdoorHeatIndex (double tempOutdoor, double humidityOutdoor) {
 // 	snprintf(buf, sizeof(buf), "{\"Inside heat index\":%lf,\"Outside heat index\":%lf}", insideHeatIndex, outsideHeatIndex);
 // 	Particle.publish(PUBLISH_EVENT_NAME, buf, PRIVATE);
 // }
+//const char *PUBLISH_EVENT_NAME = "activeSuggestion";
