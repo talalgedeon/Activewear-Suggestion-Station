@@ -62,15 +62,15 @@ void setup() {
   Serial.begin(9600);
   Serial.println("Active Wear Station"); 
   
-  // initialize DHT library
+// initialize DHT library
   dht.begin();
 
-  // initialize LED library
+// initialize LED library
   leds.init();
 
   Wire.begin();
 
-  // initialize display library
+// initialize display library
   SeeedOled.init(); 
 
 // Clearing display
@@ -175,30 +175,24 @@ void updateDisplay (double inside, double outside)
 // Clearing Display before updating
   SeeedOled.clearDisplay(), 
 
-  // SeeedOled.setTextXY(1, 0);
-  // SeeedOled.putString("Indoor Temp: ");
-  // SeeedOled.putNumber(temp);
-  // SeeedOled.putString("F");
-
-  // SeeedOled.setTextXY(2, 0);
-  // SeeedOled.putString("Indoor Humd: ");
-  // SeeedOled.putNumber(humidity);
-  // SeeedOled.putString("%");
-
   SeeedOled.setTextXY(1, 0);
+  SeeedOled.putString("Indoor (IN) &");
+
+  SeeedOled.setTextXY(2, 0);
+  SeeedOled.putString("Outdoor (Out)");
+
+  SeeedOled.setTextXY(3, 0);
+  SeeedOled.putString("Heat Indexes");
+
+  SeeedOled.setTextXY(5, 0);
   SeeedOled.putString("In Index:");
   SeeedOled.putNumber(inside);
   SeeedOled.putString("F");
 
-  SeeedOled.setTextXY(2, 0);
+  SeeedOled.setTextXY(6, 0);
   SeeedOled.putString("Out Index:");
   SeeedOled.putNumber(outside);
   SeeedOled.putString("F");
-
-  // SeeedOled.setTextXY(3, 0);
-  // SeeedOled.putString("Clothes:");
-  // SeeedOled.putNumber(indoorHeatIndex < outdoorHeatIndex);
-  // SeeedOled.putString("Yes");
 
 }
 
@@ -249,20 +243,3 @@ double outdoorHeatIndex (double tempOutdoor, double humidityOutdoor) {
 
   return outHeatIndex;
 }   
-
-
-// void publishData() {
-// 	// This just publishes some somewhat random data for testing
-
-// 	// a is a monotonically increasing integer
-// 	double insideHeatIndex = ;
-
-// 	// double value b is a cosine, so the values will rise and fall nicely over 360 steps
-// 	double outsideHeatIndex = ;
-
-
-// 	char buf[256];
-// 	snprintf(buf, sizeof(buf), "{\"Inside heat index\":%lf,\"Outside heat index\":%lf}", insideHeatIndex, outsideHeatIndex);
-// 	Particle.publish(PUBLISH_EVENT_NAME, buf, PRIVATE);
-// }
-//const char *PUBLISH_EVENT_NAME = "activeSuggestion";
