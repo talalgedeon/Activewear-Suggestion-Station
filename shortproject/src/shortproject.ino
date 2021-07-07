@@ -164,20 +164,14 @@ void updateDisplay (double inside, double outside)
   SeeedOled.clearDisplay(), 
 
   SeeedOled.setTextXY(1, 0);
-  SeeedOled.putString("Indoor (IN) &");
-
-  SeeedOled.setTextXY(2, 0);
-  SeeedOled.putString("Outdoor (Out)");
-
-  SeeedOled.setTextXY(3, 0);
   SeeedOled.putString("Heat Indexes");
 
-  SeeedOled.setTextXY(5, 0);
+  SeeedOled.setTextXY(3, 0);
   SeeedOled.putString("In Index:");
   SeeedOled.putNumber(inside);
   SeeedOled.putString("F");
 
-  SeeedOled.setTextXY(6, 0);
+  SeeedOled.setTextXY(5, 0);
   SeeedOled.putString("Out Index:");
   SeeedOled.putNumber(outside);
   SeeedOled.putString("F");
