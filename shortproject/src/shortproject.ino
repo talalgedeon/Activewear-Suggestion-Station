@@ -22,6 +22,12 @@
 // Defining Ubidots webhook name
 const char *WEBHOOK_NAME = "Ubidots"; 
 
+const unsigned long PUBLISH_PERIOD_MS1 = 60000;
+const unsigned long FIRST_PUBLISH_MS1 = 5000;
+const char *PUBLISH_EVENT_NAME = "activeSuggestion";
+
+unsigned long lastPublish1 = FIRST_PUBLISH_MS1 - PUBLISH_PERIOD_MS1;
+
 // Ubidots constant 
 Ubidots ubidots("webhook", UBI_PARTICLE); 
 
@@ -44,6 +50,10 @@ float humidity = dht.getHumidity();
 
 // Read Temp Data
 float temp = dht.getTempFarenheit();
+
+double Inside = indoorHeatIndex(temp, humidity);
+
+double Outside = outdoorHeatIndex (tempOutdoor, humidityOutdoor);
 
 
 void setup() {
@@ -104,6 +114,11 @@ double outside = outdoorHeatIndex (tempOutdoor, humidityOutdoor);
     Particle.publish("GetWeatherForecast", PRIVATE);
   }
 
+	if (millis() - lastPublish1 >= PUBLISH_PERIOD_MS1) {
+		lastPublish1 = millis();
+		publishData();
+	}
+
 // Indoor heat index lower than outdoor heat index turn blue
   if (inside < outside){
   leds.setColorRGB(0,0,0,255);
@@ -139,7 +154,6 @@ double outside = outdoorHeatIndex (tempOutdoor, humidityOutdoor);
   Serial.println(long(indoorHeatIndex(temp, humidity)));
   Serial.println(long(outdoorHeatIndex(tempOutdoor, humidityOutdoor)));
   Serial.println(outside);
-
 }
 
 // Json Parser for data collected from Open Weather API
@@ -225,3 +239,14 @@ double outdoorHeatIndex (double tempOutdoor, double humidityOutdoor) {
 
   return outHeatIndex;
 }   
+
+void publishData() {
+	// This just publishes some somewhat random data for testing
+  double insideHeatIndex = Inside;
+  double outsideHeatIndex = Outside;
+
+	char buf[256];
+	snprintf(buf, sizeof(buf), "{\"insideHeatIndex\":%f,\"outsideHeatIndex\":%f}", insideHeatIndex, outsideHeatIndex);
+	Serial.printlnf("publishing %s", buf);
+	Particle.publish(PUBLISH_EVENT_NAME, buf, PRIVATE);
+}
