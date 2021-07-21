@@ -51,10 +51,6 @@ float humidity = dht.getHumidity();
 // Read Temp Data
 float temp = dht.getTempFarenheit();
 
-double Inside = indoorHeatIndex(temp, humidity);
-
-double Outside = outdoorHeatIndex (tempOutdoor, humidityOutdoor);
-
 
 void setup() {
   Serial.begin(9600);
@@ -242,8 +238,8 @@ double outdoorHeatIndex (double tempOutdoor, double humidityOutdoor) {
 
 void publishData() {
 	// This just publishes some somewhat random data for testing
-  double insideHeatIndex = Inside;
-  double outsideHeatIndex = Outside;
+  double insideHeatIndex = indoorHeatIndex(temp, humidity);;
+  double outsideHeatIndex = outdoorHeatIndex(tempOutdoor, humidityOutdoor);
 
 	char buf[256];
 	snprintf(buf, sizeof(buf), "{\"insideHeatIndex\":%f,\"outsideHeatIndex\":%f}", insideHeatIndex, outsideHeatIndex);
