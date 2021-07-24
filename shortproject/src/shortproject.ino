@@ -113,8 +113,8 @@ double outside = outdoorHeatIndex (tempOutdoor, humidityOutdoor);
 	if (millis() - lastPublish1 >= PUBLISH_PERIOD_MS1) {
 		lastPublish1 = millis();
 		publishData();
-	}
-
+  }
+  
 // Indoor heat index lower than outdoor heat index turn blue
   if (inside < outside){
   leds.setColorRGB(0,0,0,255);
